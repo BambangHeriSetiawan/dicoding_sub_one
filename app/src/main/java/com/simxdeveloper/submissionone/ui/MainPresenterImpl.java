@@ -6,4 +6,7 @@ package com.simxdeveloper.submissionone.ui;
 public class MainPresenterImpl {
   private MainPresenter presenter;
 
+  public MainPresenterImpl (MainPresenter presenter) {
+    this.presenter = presenter;
+  }
 }

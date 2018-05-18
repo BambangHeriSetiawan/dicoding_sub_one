@@ -1,7 +1,7 @@
 package com.simxdeveloper.submissionone.data;
 
 import com.simxdeveloper.submissionone.BuildConfig;
-import com.simxdeveloper.submissionone.data.model.ResponseSearchMovie;
+import com.simxdeveloper.submissionone.data.model.search.ResponseSearchMovie;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

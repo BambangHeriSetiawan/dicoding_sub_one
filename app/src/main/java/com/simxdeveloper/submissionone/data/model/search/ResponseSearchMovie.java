@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.data.model;
+package com.simxdeveloper.submissionone.data.model.search;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

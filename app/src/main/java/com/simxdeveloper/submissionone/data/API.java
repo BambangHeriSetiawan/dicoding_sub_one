@@ -4,7 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.simxdeveloper.submissionone.BuildConfig;
-import com.simxdeveloper.submissionone.data.model.ResponseSearchMovie;
+import com.simxdeveloper.submissionone.data.model.search.ResponseSearchMovie;
 import com.simxdeveloper.submissionone.helper.Const;
 import io.reactivex.Observable;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +22,9 @@ import retrofit2.http.Query;
 public interface API {
   @GET(Const.PATH_SEARCH)
   Observable<ResponseSearchMovie> getMovies(@Query ("api_key")String api_key,@Query ("query")String query);
+
+  @GET(Const.PATH_DISCOVER)
+  Observable<ResponseSearchMovie> getAllMovie(@Query ("api_key")String api_key,@Query ("sort_by")String sort_by);
 
   class Factory{
     public static API create(){

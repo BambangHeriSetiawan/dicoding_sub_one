@@ -1,10 +1,7 @@
-package com.simxdeveloper.submissionone.data.model;
+package com.simxdeveloper.submissionone.data.model.search;
 
 import java.util.List;
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
-
-@Generated("com.robohorse.robopojogenerator")
 public class ResultsItem{
 
 	@SerializedName("overview")
