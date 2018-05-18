@@ -3,7 +3,9 @@ package com.simxdeveloper.submissionone.data;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.simxdeveloper.submissionone.BuildConfig;
 import com.simxdeveloper.submissionone.data.model.ResponseSearchMovie;
+import com.simxdeveloper.submissionone.helper.Const;
 import io.reactivex.Observable;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
@@ -18,17 +20,17 @@ import retrofit2.http.Query;
  * User: simx Date: 18/05/18 22:03
  */
 public interface API {
-  @GET("province")
+  @GET(Const.PATH_SEARCH)
   Observable<ResponseSearchMovie> getMovies(@Query ("api_key")String api_key,@Query ("query")String query);
 
   class Factory{
-    public static API create(String base_url){
-      return getRetrofitConfig (base_url).create (API.class);
+    public static API create(){
+      return getRetrofitConfig ().create (API.class);
     }
 
-    public static Retrofit getRetrofitConfig(String base_url) {
+    public static Retrofit getRetrofitConfig() {
       return new Retrofit.Builder()
-          .baseUrl(base_url)
+          .baseUrl(BuildConfig.BaseUrl)
           .addConverterFactory(GsonConverterFactory.create(getGson ()))
           .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
           .client(client())
