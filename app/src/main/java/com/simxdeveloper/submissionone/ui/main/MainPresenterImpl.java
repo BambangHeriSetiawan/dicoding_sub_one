@@ -13,6 +13,10 @@ public class MainPresenterImpl {
     this.presenter = presenter;
   }
 
+  /**
+   * Get data movie from path "discover/movie"
+   * Default sort is popularity.desc
+   */
   public void discoverMovie () {
     presenter.showLoading (true);
     ObservableHelper.discoverMoviesObservable (Const.PATH_SORT_BY_POP_DESC).subscribe (
@@ -24,6 +28,11 @@ public class MainPresenterImpl {
         ,() -> presenter.showLoading(false)
     );
   }
+
+  /**
+   * Get Data movie from path "search/movie" base on param
+   * @param query
+   */
   public void searchMovie(String query){
     presenter.showLoading (true);
     ObservableHelper.searchMovieObservable (query).subscribe (

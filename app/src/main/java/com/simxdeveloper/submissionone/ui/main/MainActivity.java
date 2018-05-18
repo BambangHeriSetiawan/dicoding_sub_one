@@ -53,13 +53,16 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
     imm = (InputMethodManager) getSystemService (INPUT_METHOD_SERVICE);
     adapterMovie = new AdapterMovie (this, new ArrayList<> ());
     if (!Tools.isOnline ()) {
-      showOfflineMessage ();
+      showOfflineMessage (true);
     } else {
       presenter.discoverMovie ();
       initRcv ();
     }
   }
 
+  /**
+   * Config Actionbar
+   */
   private void initActionBar () {
     Log.e ("MainActivity", "initActionBar: " + getSupportActionBar ());
     setSupportActionBar (toolbar);
@@ -67,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
     getSupportActionBar ().setTitle ("Dicoding");
   }
 
+  /**
+   * Config Recyleview Moive
+   */
   private void initRcv () {
     rcvMovies.setHasFixedSize (true);
     rcvMovies.setItemAnimator (new DefaultItemAnimator ());
@@ -74,63 +80,91 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
         .setLayoutManager (new LinearLayoutManager (this, LinearLayoutManager.VERTICAL, false));
   }
 
-  private void showOfflineMessage () {
-    lytNoConnection.setVisibility (View.VISIBLE);
+  /**
+   * Show offline layout if app is not connect internet
+   * @param isShow
+   */
+  private void showOfflineMessage (boolean isShow) {
+    if (isShow) lytNoConnection.setVisibility (View.VISIBLE);
+      else lytNoConnection.setVisibility (View.GONE);
   }
 
+  /**
+   * Show progress bar
+   * @param isShow
+   */
   @Override
   public void showLoading (boolean isShow) {
-    if (isShow) {
-      progressView.setVisibility (View.VISIBLE);
-    } else {
-      progressView.setVisibility (View.GONE);
-    }
+    if (isShow) progressView.setVisibility (View.VISIBLE);
+      else progressView.setVisibility (View.GONE);
+
   }
 
+  /**
+   * Swow Error Message
+   * @param message
+   */
   @Override
   public void showError (String message) {
     Toast.makeText (this, message, Toast.LENGTH_SHORT).show ();
+    showLoading (false);
   }
 
+  /**
+   * show Data from discovery
+   * @param resultsItems
+   */
   @Override
   public void initMovieFromDiscover (List<ResultsItem> resultsItems) {
     adapterMovie.updateAdapter (resultsItems);
     rcvMovies.setAdapter (adapterMovie);
+    showOfflineMessage (false);
   }
 
+  /**
+   * Show Data from search results
+   * @param resultsItems
+   */
   @Override
   public void initMovieFromSearch (List<ResultsItem> resultsItems) {
     adapterMovie.updateAdapter (resultsItems);
     rcvMovies.setAdapter (adapterMovie);
+    showOfflineMessage (false);
   }
 
+  /**
+   * Show Empety Result if no data found
+   * @param isEmpety
+   */
   @Override
   public void showEmpetyResult (boolean isEmpety) {
-    if (isEmpety) {
-      lytEmpety.setVisibility (View.VISIBLE);
-    } else {
-      lytEmpety.setVisibility (View.GONE);
-    }
+    if (isEmpety) lytEmpety.setVisibility (View.VISIBLE);
+      else lytEmpety.setVisibility (View.GONE);
   }
 
+  /**
+   * action for text Try Again
+   */
   @OnClick(R.id.tv_try_again)
   public void onTryAgainClicked () {
-    if (Tools.isValidInputSearch (etSearch.getText ().toString ())) {
-      presenter.searchMovie (etSearch.getText ().toString ());
-    } else {
-      presenter.discoverMovie ();
-    }
-
+    if (Tools.isValidInputSearch (etSearch.getText ().toString ())) presenter.searchMovie (etSearch.getText ().toString ());
+      else presenter.discoverMovie ();
   }
 
+  /**
+   * Action for Button Search
+   * Hidden keyboard after button clikced
+   */
   @OnClick(R.id.btn_search)
   public void onBtnSearchClicked () {
     hiddenKeyboard (lytEmpety);
-    if (Tools.isValidInputSearch (etSearch.getText ().toString ())) {
-      presenter.searchMovie (etSearch.getText ().toString ());
-    }
+    if (Tools.isValidInputSearch (etSearch.getText ().toString ())) presenter.searchMovie (etSearch.getText ().toString ());
   }
 
+  /**
+   * Hidden Keyboar from windows
+   * @param view
+   */
   private void hiddenKeyboard (View view) {
     imm.hideSoftInputFromWindow (view.getWindowToken (), 0);
   }
