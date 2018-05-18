@@ -1,15 +1,25 @@
 apply plugin: 'com.android.application'
-
+apply from: "script-git-version.gradle"
 android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.simxdeveloper.submissionone"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode gitVersionCode
+        versionName gitVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "dicoding-sub-one${variant.buildType.name}-${variant.versionName}-${variant.versionCode}.apk";
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
