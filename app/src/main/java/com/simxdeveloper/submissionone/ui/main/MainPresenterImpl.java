@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.ui;
+package com.simxdeveloper.submissionone.ui.main;
 
 import com.simxdeveloper.submissionone.data.ObservableHelper;
 import com.simxdeveloper.submissionone.helper.Const;
@@ -28,7 +28,7 @@ public class MainPresenterImpl {
     presenter.showLoading (true);
     ObservableHelper.searchMovieObservable (query).subscribe (
         responseSearchMovie -> {
-          if (responseSearchMovie.getResults ()!=null)presenter.initMovieFromDiscover (responseSearchMovie.getResults ());
+          if (responseSearchMovie.getResults ()!=null)presenter.initMovieFromSearch (responseSearchMovie.getResults ());
             else presenter.showEmpetyResult(true);
         }
         ,throwable -> presenter.showError (throwable.getMessage ())

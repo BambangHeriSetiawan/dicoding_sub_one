@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.ui;
+package com.simxdeveloper.submissionone.ui.main;
 
 import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
 import java.util.List; /**
@@ -14,4 +14,5 @@ public interface MainPresenter {
 
   void showEmpetyResult (boolean isEmpety);
 
+  void initMovieFromSearch (List<ResultsItem> resultsItems);
 }
