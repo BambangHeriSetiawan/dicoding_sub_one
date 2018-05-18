@@ -9,6 +9,8 @@ android {
         versionCode gitVersionCode
         versionName gitVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'BaseUrl', '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'ApiKey', '"8bd5fd5cf00be94f16916661aac61163"'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -29,10 +31,14 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    annotationProcessor 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:' + rootProject.ext.rxAndroidVer
     implementation 'io.reactivex.rxjava2:rxjava:' + rootProject.ext.rxJavaVer
     implementation 'com.squareup.okhttp3:okhttp:' + rootProject.ext.okhttpVer
@@ -41,17 +47,14 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:' + rootProject.ext.retroVer
     implementation 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.ext.retroVer
     implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.ext.retroVer
-
     //Butterknife
     implementation 'com.jakewharton:butterknife:' + rootProject.ext.butterVer
-    implementation 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterVer
-
+    annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterVer
     //Glide
     implementation 'com.github.bumptech.glide:glide:' + rootProject.ext.glideVer
-    implementation 'com.github.bumptech.glide:compiler:' + rootProject.ext.glideVer
-
-
+    annotationProcessor 'com.github.bumptech.glide:compiler:' + rootProject.ext.glideVer
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
 }

@@ -1,3 +1,8 @@
 <resources>
   <string name="app_name">Dicoding Submission 1</string>
+  <string name="offline_meesage">No Internet Connection !!</string>
+  <string name="tyr_again_meesage">Try Again</string>
+  <string name="data_not_found">Data not found</string>
+  <string name="tx_search">Search</string>
+
 </resources>
