@@ -9,6 +9,8 @@ android {
         versionCode gitVersionCode
         versionName gitVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'BaseUrl', '"https://api.themoviedb.org/3/"'
+        buildConfigField 'String', 'ApiKey', '"8bd5fd5cf00be94f16916661aac61163"'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
