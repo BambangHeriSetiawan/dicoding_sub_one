@@ -2,6 +2,7 @@ package com.simxdeveloper.submissionone.helper;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import com.simxdeveloper.submissionone.Apps;
 
 /**
@@ -13,4 +14,8 @@ public class Tools {
     NetworkInfo netInfo = cm.getActiveNetworkInfo ();
     return netInfo !=null && netInfo.isConnectedOrConnecting ();
   }
+  public static boolean isValidInputSearch(CharSequence target){
+    return !TextUtils.isEmpty (target) ? true:false;
+  }
+
 }

@@ -3,6 +3,7 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/lyt_main"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context=".ui.main.MainActivity">
@@ -11,14 +12,18 @@
     android:layout_height="wrap_content">
     <include layout="@layout/base_toolbar"/>
   </android.support.design.widget.AppBarLayout>
-  <RelativeLayout
+  <LinearLayout
+    android:gravity="center"
+    android:orientation="vertical"
     android:layout_margin="5dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <include layout="@layout/base_progress"/>
+
     <include layout="@layout/include_no_connection"/>
     <include layout="@layout/include_empety_result"/>
+    <include layout="@layout/include_layout_search_form"/>
+    <include layout="@layout/base_progress"/>
     <include layout="@layout/include_rcv_movies"/>
-  </RelativeLayout>
+  </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
