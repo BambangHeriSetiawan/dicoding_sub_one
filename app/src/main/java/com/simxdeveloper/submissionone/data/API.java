@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.simxdeveloper.submissionone.BuildConfig;
+import com.simxdeveloper.submissionone.data.model.discover.ResponseDiscoverMovies;
 import com.simxdeveloper.submissionone.data.model.search.ResponseSearchMovie;
 import com.simxdeveloper.submissionone.helper.Const;
 import io.reactivex.Observable;
@@ -20,17 +21,42 @@ import retrofit2.http.Query;
  * User: simx Date: 18/05/18 22:03
  */
 public interface API {
+
+  /**
+   * Search moview depend on query param
+   * @param api_key
+   * @param query
+   * @return
+   */
   @GET(Const.PATH_SEARCH)
   Observable<ResponseSearchMovie> getMovies(@Query ("api_key")String api_key,@Query ("query")String query);
 
+  /**
+   * Get All Movie discover
+   * @param api_key
+   * @param sort_by
+   * @return
+   */
   @GET(Const.PATH_DISCOVER)
-  Observable<ResponseSearchMovie> getAllMovie(@Query ("api_key")String api_key,@Query ("sort_by")String sort_by);
+  Observable<ResponseDiscoverMovies> getAllMovie(@Query ("api_key")String api_key,@Query ("sort_by")String sort_by);
 
+  /**
+   * Facroty class to build retrofit
+   */
   class Factory{
+
+    /**
+     * create class create to access retroift
+     * @return
+     */
     public static API create(){
       return getRetrofitConfig ().create (API.class);
     }
 
+    /**
+     * Config retrofilt
+     * @return
+     */
     public static Retrofit getRetrofitConfig() {
       return new Retrofit.Builder()
           .baseUrl(BuildConfig.BaseUrl)
@@ -39,11 +65,21 @@ public interface API {
           .client(client())
           .build();
     }
+
+    /**
+     * Config GSON
+     * @return
+     */
     public static Gson getGson(){
       GsonBuilder gsonBuilder = new GsonBuilder();
       gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
       return gsonBuilder.create ();
     }
+
+    /**
+     * Config OkhttpClient and interceptions
+     * @return
+     */
     private static OkHttpClient client() {
       return new OkHttpClient.Builder()
           .readTimeout(60, TimeUnit.SECONDS)
