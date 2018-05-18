@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
     super.onCreate (savedInstanceState);
     setContentView (R.layout.activity_main);
     presenter = new MainPresenterImpl (this);
-    if (Tools.isOnline ()){
+    if (!Tools.isOnline ()){
       showOfflineMessage();
     }else {
       presenter.discoverMovie();

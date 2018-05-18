@@ -46,11 +46,11 @@ dependencies {
 
     //Butterknife
     implementation 'com.jakewharton:butterknife:' + rootProject.ext.butterVer
-    implementation 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterVer
+    annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.ext.butterVer
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:' + rootProject.ext.glideVer
-    implementation 'com.github.bumptech.glide:compiler:' + rootProject.ext.glideVer
+    annotationProcessor 'com.github.bumptech.glide:compiler:' + rootProject.ext.glideVer
 
 
     testImplementation 'junit:junit:4.12'
