@@ -1,6 +1,8 @@
 package com.simxdeveloper.catalogmovie.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
@@ -19,6 +21,7 @@ import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
 import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.home.adapter.HomePageAdapter;
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity
     implements OnNavigationItemSelectedListener {
@@ -51,6 +54,7 @@ public class HomeActivity extends AppCompatActivity
     drawer.addDrawerListener (toggle);
     toggle.syncState ();
     nav.setNavigationItemSelectedListener (this);
+    Log.e ("HomeActivity", "onCreate: " + Locale.getDefault ().getLanguage ());
   }
 
   @Override
@@ -78,6 +82,8 @@ public class HomeActivity extends AppCompatActivity
 
     //noinspection SimplifiableIfStatement
     if (id == R.id.action_settings) {
+      Intent mIntent = new Intent (Settings.ACTION_LOCALE_SETTINGS);
+      startActivity(mIntent);
       return true;
     }
 
@@ -89,12 +95,32 @@ public class HomeActivity extends AppCompatActivity
   public boolean onNavigationItemSelected (MenuItem item) {
     // Handle navigation view item clicks here.
     int id = item.getItemId ();
+
     if (id == R.id.nav_in) {
 
     } else if (id == R.id.nav_eng) {
 
     }
+    else if (id == R.id.nav_now_playing) {
+      homeView.setCurrentItem (0);
+    }
+    else if (id == R.id.nav_upcoming) {
+      homeView.setCurrentItem (1);
+    }
+    else if (id == R.id.nav_search) {
+      homeView.setCurrentItem (2);
+    }
     drawer.closeDrawer (GravityCompat.START);
     return true;
+  }
+
+  @Override
+  protected void onResume () {
+    super.onResume ();
+    String region = Locale.getDefault ().getCountry ();
+    String lang = Locale.getDefault ().getLanguage ();
+
+    GlobalPreference.write (PrefKey.LANGUAGE,lang+"-"+region,String.class);
+    GlobalPreference.write (PrefKey.REGION,region,String.class);
   }
 }

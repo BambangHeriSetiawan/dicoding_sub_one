@@ -8,5 +8,6 @@ public class PrefKey {
    * Language key
    */
   public static final String LANGUAGE = "language";
+  public static final String REGION = "region";
 
 }

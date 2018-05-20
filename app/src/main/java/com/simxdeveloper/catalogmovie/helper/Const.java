@@ -38,7 +38,8 @@ public class Const {
   /**
    * Default language
    */
-  private final static String DEFAULT_LANGUAGE = "en";
+  private final static String DEFAULT_LANGUAGE = "in";
+  private final static String DEFAULT_REGION = "ID";
 
   /**
    * Constatnta Title Tabs

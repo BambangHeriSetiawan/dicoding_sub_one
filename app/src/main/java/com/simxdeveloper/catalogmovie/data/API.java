@@ -33,8 +33,9 @@ public interface API {
   @GET(Const.PATH_SEARCH)
   Observable<ResponseSearchMovie> getMovies(
       @Query ("api_key")String api_key,
-      @Query ("query")String query,
-      @Query ("language") String language
+      @Query ("query")String query/*,
+      @Query ("language") String language,
+      @Query ("region") String region*/
   );
   /**
    * Get All Movie discover
@@ -47,15 +48,17 @@ public interface API {
 
   @GET(Const.PATH_UPCOMING)
   Observable<ResponseUpcoming> getUpcomingMovie(
-      @Query ("api_key") String api_key,
-      @Query ("language") String language
+      @Query ("api_key") String api_key/*,
+      @Query ("language") String language,
+      @Query ("region") String region*/
 
   );
 
   @GET(Const.PATH_NOW_PLAYING)
   Observable<ResponseNowPlaying> getNowPlayingMovie(
-      @Query ("api_key") String api_key,
-      @Query ("language") String language
+      @Query ("api_key") String api_key/*,
+      @Query ("language") String language,
+      @Query ("region") String region*/
   );
 
   /**
