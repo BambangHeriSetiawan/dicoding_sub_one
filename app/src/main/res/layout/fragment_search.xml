@@ -4,7 +4,7 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.home.search.SearchFragment">
+  tools:context="com.simxdeveloper.catalogmovie.ui.home.search.SearchFragment">
   <include layout="@layout/include_layout_search_form"/>
   <include layout="@layout/include_rcv_movies"/>
 </LinearLayout>

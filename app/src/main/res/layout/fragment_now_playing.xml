@@ -4,6 +4,6 @@
   android:orientation="vertical"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".ui.home.now_play.NowPlayingFragment">
+  tools:context="com.simxdeveloper.catalogmovie.ui.home.now_play.NowPlayingFragment">
   <include layout="@layout/include_rcv_movies"/>
 </LinearLayout>
