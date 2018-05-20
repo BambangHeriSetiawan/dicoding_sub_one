@@ -14,8 +14,8 @@ public class NowPlayingPresenterImpl {
   }
 
   public void getUpcomingMovie () {
-    ObservableHelper.upcomingObservable ().subscribe (
-        responseUpcoming -> presenter.iniMovie(responseUpcoming.getResults ()),
+    ObservableHelper.nowPlayingObservable ().subscribe (
+        responseNowPlaying -> presenter.iniMovie(responseNowPlaying.getResults ()),
         throwable -> presenter.showError(throwable.getMessage ())
     );
   }

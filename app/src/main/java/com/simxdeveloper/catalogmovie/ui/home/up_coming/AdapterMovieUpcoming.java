@@ -48,8 +48,11 @@ public class AdapterMovieUpcoming extends RecyclerView.Adapter<AdapterMovieUpcom
     holder.tvDesc.setText (resultsItem.getOverview ());
     holder.tvDate.setText (resultsItem.getReleaseDate ());
     Glide.with (Apps.getContext ()).load (Const.IMAGE_PATH + resultsItem.getPosterPath ()).into (holder.imgMovie);
-    holder.itemView.setOnClickListener (v -> {
+    holder.btnDetail.setOnClickListener (v -> {
       presenter.onMovieClicked(resultsItem);
+    });
+    holder.btnShare.setOnClickListener (v-> {
+      presenter.onMovieShare(resultsItem);
     });
   }
 

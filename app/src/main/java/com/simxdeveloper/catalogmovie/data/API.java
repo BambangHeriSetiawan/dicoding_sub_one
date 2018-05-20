@@ -33,8 +33,8 @@ public interface API {
   @GET(Const.PATH_SEARCH)
   Observable<ResponseSearchMovie> getMovies(
       @Query ("api_key")String api_key,
-      @Query ("language") String language,
-      @Query ("query")String query
+      @Query ("query")String query,
+      @Query ("language") String language
   );
   /**
    * Get All Movie discover
