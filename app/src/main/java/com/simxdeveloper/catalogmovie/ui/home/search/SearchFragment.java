@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SearchFragmentPresenter {
 
 
   public SearchFragment () { }
@@ -30,4 +32,8 @@ public class SearchFragment extends Fragment {
     return view;
   }
 
+  @Override
+  public void onMovieClicked (ResultsItem resultsItem) {
+    DetailActivity.start (getContext (),resultsItem);
+  }
 }

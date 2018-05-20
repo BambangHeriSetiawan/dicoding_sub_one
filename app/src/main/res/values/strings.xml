@@ -18,5 +18,7 @@
   <string name="now_playing">Dimainakn Sekarang</string>
   <string name="upcoming">Akan Datang</string>
   <string name="search">Cari</string>
+  <string name="detail">Detail</string>
+  <string name="share">Bagikan</string>
 
 </resources>

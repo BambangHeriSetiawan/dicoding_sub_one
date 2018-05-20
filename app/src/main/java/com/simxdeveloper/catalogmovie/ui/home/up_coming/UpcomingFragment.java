@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UpcomingFragment extends Fragment {
+public class UpcomingFragment extends Fragment implements UpcomingFragmentPresenter {
 
 
   public UpcomingFragment () {}
@@ -31,4 +33,8 @@ public class UpcomingFragment extends Fragment {
     return inflater.inflate (R.layout.fragment_upcoming, container, false);
   }
 
+  @Override
+  public void onMovieClicked (ResultsItem resultsItem) {
+    DetailActivity.start (getContext (),resultsItem);
+  }
 }
