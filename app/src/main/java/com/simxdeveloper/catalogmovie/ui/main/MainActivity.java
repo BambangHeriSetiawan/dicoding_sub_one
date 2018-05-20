@@ -18,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.simxdeveloper.catalogmovie.R;
-import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Tools;
 import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
 import java.util.ArrayList;

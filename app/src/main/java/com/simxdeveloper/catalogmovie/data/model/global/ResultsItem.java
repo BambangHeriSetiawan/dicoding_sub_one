@@ -1,4 +1,4 @@
-package com.simxdeveloper.catalogmovie.data.model.search;
+package com.simxdeveloper.catalogmovie.data.model.global;
 
 import android.os.Parcel;
 import java.util.ArrayList;

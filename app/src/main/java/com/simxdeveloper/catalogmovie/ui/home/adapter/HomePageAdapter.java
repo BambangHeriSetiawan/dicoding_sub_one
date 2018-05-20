@@ -4,6 +4,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import com.simxdeveloper.catalogmovie.Apps;
+import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.helper.Const;
 import com.simxdeveloper.catalogmovie.ui.home.now_play.NowPlayingFragment;
 import com.simxdeveloper.catalogmovie.ui.home.search.SearchFragment;
@@ -37,9 +39,9 @@ public class HomePageAdapter extends FragmentPagerAdapter {
   @Override
   public CharSequence getPageTitle (int position) {
     switch (position) {
-      case 0: return Const.PAGE_NOW_PLAYING;
-      case 1: return Const.PAGE_UPCOMING;
-      case 2: return Const.PAGE_SEARCH;
+      case 0: return Apps.getContext ().getResources ().getString (R.string.now_playing);
+      case 1: return Apps.getContext ().getResources ().getString (R.string.upcoming);
+      case 2: return Apps.getContext ().getResources ().getString (R.string.search);
     }
     return null;
   }

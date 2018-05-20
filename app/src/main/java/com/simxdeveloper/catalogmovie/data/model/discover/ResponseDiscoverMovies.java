@@ -1,6 +1,6 @@
 package com.simxdeveloper.catalogmovie.data.model.discover;
 
-import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
