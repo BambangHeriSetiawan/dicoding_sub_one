@@ -20,6 +20,8 @@ import butterknife.OnClick;
 import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Tools;
+import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
+import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
 import java.util.ArrayList;
 import java.util.List;

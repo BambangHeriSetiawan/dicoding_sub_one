@@ -51,7 +51,6 @@ public class HomeActivity extends AppCompatActivity
     drawer.addDrawerListener (toggle);
     toggle.syncState ();
     nav.setNavigationItemSelectedListener (this);
-    Log.e ("HomeActivity", "onCreate: " + GlobalPreference.read (PrefKey.LANGUAGE,String.class));
   }
 
   @Override

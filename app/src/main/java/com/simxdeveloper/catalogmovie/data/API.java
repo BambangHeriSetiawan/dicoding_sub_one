@@ -5,7 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.simxdeveloper.catalogmovie.BuildConfig;
 import com.simxdeveloper.catalogmovie.data.model.discover.ResponseDiscoverMovies;
+import com.simxdeveloper.catalogmovie.data.model.now_play.ResponseNowPlaying;
 import com.simxdeveloper.catalogmovie.data.model.search.ResponseSearchMovie;
+import com.simxdeveloper.catalogmovie.data.model.upcoming.ResponseUpcoming;
 import com.simxdeveloper.catalogmovie.helper.Const;
 import io.reactivex.Observable;
 import java.util.concurrent.TimeUnit;
@@ -29,8 +31,11 @@ public interface API {
    * @return
    */
   @GET(Const.PATH_SEARCH)
-  Observable<ResponseSearchMovie> getMovies(@Query ("api_key")String api_key,@Query ("query")String query);
-
+  Observable<ResponseSearchMovie> getMovies(
+      @Query ("api_key")String api_key,
+      @Query ("language") String language,
+      @Query ("query")String query
+  );
   /**
    * Get All Movie discover
    * @param api_key
@@ -39,6 +44,19 @@ public interface API {
    */
   @GET(Const.PATH_DISCOVER)
   Observable<ResponseDiscoverMovies> getAllMovie(@Query ("api_key")String api_key,@Query ("sort_by")String sort_by);
+
+  @GET(Const.PATH_UPCOMING)
+  Observable<ResponseUpcoming> getUpcomingMovie(
+      @Query ("api_key") String api_key,
+      @Query ("language") String language
+
+  );
+
+  @GET(Const.PATH_NOW_PLAYING)
+  Observable<ResponseNowPlaying> getNowPlayingMovie(
+      @Query ("api_key") String api_key,
+      @Query ("language") String language
+  );
 
   /**
    * Facroty class to build retrofit

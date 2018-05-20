@@ -16,6 +16,16 @@ public class Const {
   public final static String PATH_DISCOVER = "discover/movie";
 
   /**
+   * Url path for discover
+   */
+  public final static String PATH_UPCOMING = "movie/upcoming";
+
+  /**
+   * Url path for discover
+   */
+  public final static String PATH_NOW_PLAYING = "movie/now_playing";
+
+  /**
    * Default sort discover
    */
   public final static String PATH_SORT_BY_POP_DESC = "popularity.desc";
