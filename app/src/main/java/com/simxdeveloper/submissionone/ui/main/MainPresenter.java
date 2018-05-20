@@ -15,4 +15,6 @@ public interface MainPresenter {
   void showEmpetyResult (boolean isEmpety);
 
   void initMovieFromSearch (List<ResultsItem> resultsItems);
+
+  void onMovieClicked (ResultsItem resultsItem);
 }

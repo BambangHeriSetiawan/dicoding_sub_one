@@ -20,6 +20,7 @@ import butterknife.OnClick;
 import com.simxdeveloper.submissionone.R;
 import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
 import com.simxdeveloper.submissionone.helper.Tools;
+import com.simxdeveloper.submissionone.ui.detail.DetailActivity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -167,5 +168,14 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
    */
   private void hiddenKeyboard (View view) {
     imm.hideSoftInputFromWindow (view.getWindowToken (), 0);
+  }
+
+  /**
+   * Action on movie clicked change activity to detail movie
+   * @param resultsItem
+   */
+  @Override
+  public void onMovieClicked (ResultsItem resultsItem) {
+    DetailActivity.start (this,resultsItem);
   }
 }

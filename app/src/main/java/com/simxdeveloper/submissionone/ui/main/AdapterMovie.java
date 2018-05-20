@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +49,9 @@ public class AdapterMovie extends Adapter<Holder> {
     holder.tvDesc.setText (resultsItem.getOverview ());
     holder.tvDate.setText (resultsItem.getReleaseDate ());
     Glide.with (Apps.getContext ()).load (Const.IMAGE_PATH + resultsItem.getPosterPath ()).into (holder.imgMovie);
+    holder.itemView.setOnClickListener (v -> {
+      presenter.onMovieClicked(resultsItem);
+    });
   }
 
   @Override
