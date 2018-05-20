@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.ui.detail;
+package com.simxdeveloper.catalogmovie.ui.detail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +12,11 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
-import com.simxdeveloper.submissionone.R;
-import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
-import com.simxdeveloper.submissionone.helper.Const;
+import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.helper.Const;
+
+
 
 public class DetailActivity extends AppCompatActivity implements DetailPresenter {
 

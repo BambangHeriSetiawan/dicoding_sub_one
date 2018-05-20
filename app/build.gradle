@@ -3,7 +3,7 @@ apply from: "script-git-version.gradle"
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.simxdeveloper.submissionone"
+        applicationId "com.simxdeveloper.catalogmovie"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode gitVersionCode

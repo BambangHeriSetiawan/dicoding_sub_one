@@ -1,9 +1,9 @@
-package com.simxdeveloper.submissionone.helper;
+package com.simxdeveloper.catalogmovie.helper;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
-import com.simxdeveloper.submissionone.Apps;
+import com.simxdeveloper.catalogmovie.Apps;
 
 /**
  * User: simx Date: 18/05/18 22:44

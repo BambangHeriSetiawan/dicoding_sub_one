@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.ui.detail;
+package com.simxdeveloper.catalogmovie.ui.detail;
 
 /**
  * User: simx Date: 20/05/18 14:41

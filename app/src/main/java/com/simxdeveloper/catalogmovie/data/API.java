@@ -1,12 +1,12 @@
-package com.simxdeveloper.submissionone.data;
+package com.simxdeveloper.catalogmovie.data;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.simxdeveloper.submissionone.BuildConfig;
-import com.simxdeveloper.submissionone.data.model.discover.ResponseDiscoverMovies;
-import com.simxdeveloper.submissionone.data.model.search.ResponseSearchMovie;
-import com.simxdeveloper.submissionone.helper.Const;
+import com.simxdeveloper.catalogmovie.BuildConfig;
+import com.simxdeveloper.catalogmovie.data.model.discover.ResponseDiscoverMovies;
+import com.simxdeveloper.catalogmovie.data.model.search.ResponseSearchMovie;
+import com.simxdeveloper.catalogmovie.helper.Const;
 import io.reactivex.Observable;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;

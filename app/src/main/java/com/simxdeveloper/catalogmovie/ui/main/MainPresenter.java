@@ -1,6 +1,6 @@
-package com.simxdeveloper.submissionone.ui.main;
+package com.simxdeveloper.catalogmovie.ui.main;
 
-import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
 import java.util.List; /**
  * User: simx Date: 18/05/18 22:02
  */

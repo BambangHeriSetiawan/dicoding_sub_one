@@ -1,7 +1,6 @@
-package com.simxdeveloper.submissionone.data.model.search;
+package com.simxdeveloper.catalogmovie.data.model.search;
 
 import android.os.Parcel;
-import android.os.Parcelable.Creator;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

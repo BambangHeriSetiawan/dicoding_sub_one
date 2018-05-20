@@ -1,7 +1,7 @@
-package com.simxdeveloper.submissionone.ui.main;
+package com.simxdeveloper.catalogmovie.ui.main;
 
-import com.simxdeveloper.submissionone.data.ObservableHelper;
-import com.simxdeveloper.submissionone.helper.Const;
+import com.simxdeveloper.catalogmovie.data.ObservableHelper;
+import com.simxdeveloper.catalogmovie.helper.Const;
 
 /**
  * User: simx Date: 18/05/18 22:03

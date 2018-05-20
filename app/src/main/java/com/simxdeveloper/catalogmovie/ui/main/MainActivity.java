@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.ui.main;
+package com.simxdeveloper.catalogmovie.ui.main;
 
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -17,10 +17,10 @@ import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.simxdeveloper.submissionone.R;
-import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
-import com.simxdeveloper.submissionone.helper.Tools;
-import com.simxdeveloper.submissionone.ui.detail.DetailActivity;
+import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.helper.Tools;
+import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
 import java.util.ArrayList;
 import java.util.List;
 

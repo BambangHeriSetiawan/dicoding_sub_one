@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone;
+package com.simxdeveloper.catalogmovie;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.simxdeveloper.submissionone.helper;
+package com.simxdeveloper.catalogmovie.helper;
 
 /**
  * User: simx Date: 18/05/18 22:36

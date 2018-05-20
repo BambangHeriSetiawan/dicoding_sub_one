@@ -1,23 +1,22 @@
-package com.simxdeveloper.submissionone.ui.main;
+package com.simxdeveloper.catalogmovie.ui.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
-import com.simxdeveloper.submissionone.Apps;
-import com.simxdeveloper.submissionone.BuildConfig;
-import com.simxdeveloper.submissionone.R;
-import com.simxdeveloper.submissionone.data.model.search.ResultsItem;
-import com.simxdeveloper.submissionone.helper.Const;
-import com.simxdeveloper.submissionone.ui.main.AdapterMovie.Holder;
+import com.simxdeveloper.catalogmovie.Apps;
+import com.simxdeveloper.catalogmovie.BuildConfig;
+import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.model.search.ResultsItem;
+import com.simxdeveloper.catalogmovie.helper.Const;
+import com.simxdeveloper.catalogmovie.ui.main.AdapterMovie.Holder;
 import java.util.List;
 
 /**
