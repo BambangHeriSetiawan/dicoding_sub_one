@@ -10,11 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
+import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.home.adapter.HomePageAdapter;
 
 public class HomeActivity extends AppCompatActivity
@@ -48,6 +51,7 @@ public class HomeActivity extends AppCompatActivity
     drawer.addDrawerListener (toggle);
     toggle.syncState ();
     nav.setNavigationItemSelectedListener (this);
+    Log.e ("HomeActivity", "onCreate: " + GlobalPreference.read (PrefKey.LANGUAGE,String.class));
   }
 
   @Override
