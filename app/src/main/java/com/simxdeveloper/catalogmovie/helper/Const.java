@@ -25,4 +25,15 @@ public class Const {
    */
   public final static String IMAGE_PATH = "http://image.tmdb.org/t/p/w185";
 
+  /**
+   * Default language
+   */
+  private final static String DEFAULT_LANGUAGE = "en";
+
+  /**
+   * Constatnta Title Tabs
+   */
+  public final static String PAGE_NOW_PLAYING = "NOW PLAYING";
+  public final static String PAGE_UPCOMING = "UPCOMING";
+  public final static String PAGE_SEARCH = "SEARCH";
 }
