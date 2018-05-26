@@ -43,6 +43,7 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
     context.startActivity (starter);
   }
 
+
   @Override
   protected void onCreate (Bundle savedInstanceState) {
     super.onCreate (savedInstanceState);
