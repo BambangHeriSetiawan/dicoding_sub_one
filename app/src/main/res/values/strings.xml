@@ -11,6 +11,7 @@
   <string name="nav_header_subtitle">android.studio@android.com</string>
   <string name="nav_header_desc">Navigation header</string>
   <string name="action_settings">Ganti Bahasa</string>
+    <string name="favorit">Favorit</string>
 
   <string name="language">Pilih Bahasa</string>
   <string name="language_in">Indonesia</string>

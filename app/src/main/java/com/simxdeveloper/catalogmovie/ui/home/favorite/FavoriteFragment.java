@@ -82,13 +82,17 @@ public class FavoriteFragment extends Fragment implements FavoritePresenter {
     resultsItem.setAdult (movies.isAdult ());
     resultsItem.setBackdropPath (movies.getBackdropPath ());
     resultsItem.setId (movies.getId ());
+    resultsItem.setTitle (movies.getTitle ());
+    resultsItem.setOriginalTitle (movies.getOriginalTitle ());
+    resultsItem.setVoteAverage (movies.getVoteAverage ());
+    resultsItem.setVoteCount (movies.getVoteCount ());
     resultsItem.setOriginalLanguage (movies.getOriginalLanguage ());
     resultsItem.setOverview (movies.getOverview ());
     resultsItem.setPopularity (movies.getPopularity ());
     resultsItem.setPosterPath (movies.getPosterPath ());
     resultsItem.setReleaseDate (movies.getReleaseDate ());
     resultsItem.setOriginalLanguage (movies.getOriginalLanguage ());
-    DetailActivity.start (getContext (), resultsItem);
+    DetailActivity.start (getContext (), resultsItem,true);
   }
 
   @Override

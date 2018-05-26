@@ -2,6 +2,7 @@ package com.simxdeveloper.catalogmovie.data.local;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import java.util.List;
@@ -27,8 +28,14 @@ public class LocalMovieDataSource implements MovieDataSource{
     return Completable.fromAction (()-> movieDAO.inserData (movies)).subscribeOn (Schedulers.newThread ()).observeOn (AndroidSchedulers.mainThread ());
   }
 
+
   @Override
-  public void deleteAll () {
-    movieDAO.deleteData ();
+  public Flowable<Movies> getMovieById (int id) {
+    return movieDAO.getAllById (id).subscribeOn (Schedulers.newThread ()).observeOn (AndroidSchedulers.mainThread ());
+  }
+
+  @Override
+  public void deleteAll (Movies movies) {
+    movieDAO.deleteData (movies);
   }
 }

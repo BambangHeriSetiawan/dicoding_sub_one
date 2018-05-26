@@ -82,12 +82,16 @@ public class HomeActivity extends AppCompatActivity
 
     //noinspection SimplifiableIfStatement
     if (id == R.id.action_settings) {
-      Intent mIntent = new Intent (Settings.ACTION_LOCALE_SETTINGS);
-      startActivity(mIntent);
+      changeSettingLanguage();
       return true;
     }
 
     return super.onOptionsItemSelected (item);
+  }
+
+  private void changeSettingLanguage () {
+    Intent mIntent = new Intent (Settings.ACTION_LOCALE_SETTINGS);
+    startActivity(mIntent);
   }
 
   @SuppressWarnings("StatementWithEmptyBody")
@@ -97,7 +101,7 @@ public class HomeActivity extends AppCompatActivity
     int id = item.getItemId ();
 
     if (id == R.id.nav_setting) {
-
+      changeSettingLanguage ();
     }
     else if (id == R.id.nav_now_playing) {
       homeView.setCurrentItem (0);
@@ -107,6 +111,9 @@ public class HomeActivity extends AppCompatActivity
     }
     else if (id == R.id.nav_search) {
       homeView.setCurrentItem (2);
+    }
+    else if (id == R.id.nav_show_fav) {
+      homeView.setCurrentItem (3);
     }
     drawer.closeDrawer (GravityCompat.START);
     return true;

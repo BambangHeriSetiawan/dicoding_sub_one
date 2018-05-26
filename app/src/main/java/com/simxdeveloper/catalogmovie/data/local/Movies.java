@@ -50,24 +50,6 @@ public class Movies {
   public Movies () {
   }
 
-  public Movies (int id, String overview, String originalLanguage, String originalTitle,
-      boolean video, String title, String posterPath, String backdropPath,
-      String releaseDate, double voteAverage, double popularity, boolean adult, int voteCount) {
-    this.id = id;
-    this.overview = overview;
-    this.originalLanguage = originalLanguage;
-    this.originalTitle = originalTitle;
-    this.video = video;
-    this.title = title;
-    this.posterPath = posterPath;
-    this.backdropPath = backdropPath;
-    this.releaseDate = releaseDate;
-    this.voteAverage = voteAverage;
-    this.popularity = popularity;
-    this.adult = adult;
-    this.voteCount = voteCount;
-  }
-
   public int getId () {
     return id;
   }
@@ -170,5 +152,24 @@ public class Movies {
 
   public void setVoteCount (int voteCount) {
     this.voteCount = voteCount;
+  }
+
+  @Override
+  public String toString () {
+    return "Movies{" +
+        "id=" + id +
+        ", overview='" + overview + '\'' +
+        ", originalLanguage='" + originalLanguage + '\'' +
+        ", originalTitle='" + originalTitle + '\'' +
+        ", video=" + video +
+        ", title='" + title + '\'' +
+        ", posterPath='" + posterPath + '\'' +
+        ", backdropPath='" + backdropPath + '\'' +
+        ", releaseDate='" + releaseDate + '\'' +
+        ", voteAverage=" + voteAverage +
+        ", popularity=" + popularity +
+        ", adult=" + adult +
+        ", voteCount=" + voteCount +
+        '}';
   }
 }

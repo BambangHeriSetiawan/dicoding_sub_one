@@ -5,4 +5,5 @@ package com.simxdeveloper.catalogmovie.ui.detail;
  */
 public interface DetailPresenter {
 
+  void setIsFav (boolean isFav);
 }

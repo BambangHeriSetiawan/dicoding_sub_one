@@ -6,7 +6,9 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.graphics.Movie;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import java.util.List;
 
 /**
@@ -17,10 +19,13 @@ public interface MovieDAO {
   @Query("SELECT * FROM movie_favorit")
   Flowable<List<Movies>> getAll();
 
-  @Insert(onConflict = REPLACE)
-  List<Long> insertAll (List<Movies> wordsEngIndos);
+  @Query("SELECT * FROM movie_favorit WHERE id LIKE:id")
+  Flowable<Movies> getAllById(int id);
 
-  @Insert
+  @Insert(onConflict = REPLACE)
+  List<Long> insertAll (List<Movies> movies);
+
+  @Insert(onConflict = REPLACE)
   void inserData(Movies...movies);
 
   @Delete

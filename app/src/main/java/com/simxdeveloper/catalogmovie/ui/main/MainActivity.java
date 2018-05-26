@@ -176,6 +176,6 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
    */
   @Override
   public void onMovieClicked (ResultsItem resultsItem) {
-    DetailActivity.start (this,resultsItem);
+    DetailActivity.start (this,resultsItem,false);
   }
 }

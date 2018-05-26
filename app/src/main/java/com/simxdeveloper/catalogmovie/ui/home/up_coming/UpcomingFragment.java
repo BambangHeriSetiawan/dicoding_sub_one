@@ -76,7 +76,7 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
 
   @Override
   public void onMovieClicked (ResultsItem resultsItem) {
-    DetailActivity.start (getContext (), resultsItem);
+    DetailActivity.start (getContext (), resultsItem,false);
   }
 
   @Override

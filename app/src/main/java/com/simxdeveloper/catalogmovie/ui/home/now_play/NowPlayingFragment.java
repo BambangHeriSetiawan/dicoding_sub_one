@@ -74,7 +74,7 @@ public class NowPlayingFragment extends Fragment implements NowPlayingPresenter 
 
   @Override
   public void onMovieClicked (ResultsItem resultsItem) {
-    DetailActivity.start (getContext (),resultsItem);
+    DetailActivity.start (getContext (),resultsItem,false);
   }
 
   @Override

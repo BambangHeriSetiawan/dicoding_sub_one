@@ -14,6 +14,10 @@
     android:id="@+id/nav_search"
     android:icon="@drawable/ic_menu_share"
     android:title="@string/search"/>
+  <item
+    android:id="@+id/nav_show_fav"
+    android:icon="@drawable/ic_favorite_white_24dp"
+    android:title="@string/favorit"/>
 
   <item android:title="@string/language">
     <menu>

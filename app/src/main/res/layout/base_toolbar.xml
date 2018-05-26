@@ -4,7 +4,7 @@
   android:id="@+id/toolbar"
   android:elevation="4dp"
   app:titleTextColor="@android:color/white"
-  android:background="?attr/colorPrimary"
+  android:background="@android:color/transparent"
   android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
   app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
   android:layout_width="match_parent"

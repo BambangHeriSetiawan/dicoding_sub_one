@@ -2,6 +2,7 @@ package com.simxdeveloper.catalogmovie.data.local;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import java.util.List;
 
 /**
@@ -11,7 +12,11 @@ public interface MovieDataSource {
 
   Flowable<List<Movies>> getAll ();
 
+  Flowable<Movies> getMovieById(int id);
+
   Completable insert (Movies movies);
 
-  void deleteAll ();
+
+
+  void deleteAll (Movies movies);
 }

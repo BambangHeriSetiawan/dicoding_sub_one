@@ -84,7 +84,7 @@ public class SearchFragment extends Fragment implements SearchFragmentPresenter 
 
   @Override
   public void onMovieClicked (ResultsItem resultsItem) {
-    DetailActivity.start (getContext (), resultsItem);
+    DetailActivity.start (getContext (), resultsItem,false);
   }
 
   @Override
