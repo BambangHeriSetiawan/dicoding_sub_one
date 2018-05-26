@@ -1,12 +1,10 @@
 package com.simxdeveloper.catalogmovie.ui.home.now_play;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,7 +14,7 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.simxdeveloper.catalogmovie.Apps;
 import com.simxdeveloper.catalogmovie.R;
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
 import com.simxdeveloper.catalogmovie.ui.home.now_play.AdapterMovieNowPlaying.Holder;
 import java.util.List;

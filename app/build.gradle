@@ -11,6 +11,11 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField 'String', 'BaseUrl', '"https://api.themoviedb.org/3/"'
         buildConfigField 'String', 'ApiKey', '"8bd5fd5cf00be94f16916661aac61163"'
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -18,7 +23,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "dicoding-sub-one${variant.buildType.name}-${variant.versionName}-${variant.versionCode}.apk";
+            outputFileName = "dicoding-katalog-movie${variant.buildType.name}-${variant.versionName}-${variant.versionCode}.apk";
         }
     }
 
@@ -54,6 +59,24 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:' + rootProject.ext.glideVer
     annotationProcessor 'com.github.bumptech.glide:compiler:' + rootProject.ext.glideVer
+
+
+    def lifecycle_version = "1.1.1"
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    // optional - ReactiveStreams support for LiveData
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
+
+
+    def room_version = "1.1.0"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    // optional - RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation "android.arch.persistence.room:guava:$room_version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

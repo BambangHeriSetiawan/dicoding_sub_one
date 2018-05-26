@@ -18,13 +18,9 @@
   <item android:title="@string/language">
     <menu>
       <item
-        android:id="@+id/nav_in"
+        android:id="@+id/nav_setting"
         android:icon="@drawable/ic_menu_share"
-        android:title="@string/language_in"/>
-      <item
-        android:id="@+id/nav_eng"
-        android:icon="@drawable/ic_menu_send"
-        android:title="@string/language_en"/>
+        android:title="@string/action_settings"/>
     </menu>
   </item>
 

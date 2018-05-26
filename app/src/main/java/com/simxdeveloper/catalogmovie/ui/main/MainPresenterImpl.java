@@ -1,6 +1,6 @@
 package com.simxdeveloper.catalogmovie.ui.main;
 
-import com.simxdeveloper.catalogmovie.data.ObservableHelper;
+import com.simxdeveloper.catalogmovie.data.repo.ObservableHelper;
 import com.simxdeveloper.catalogmovie.helper.Const;
 
 /**
