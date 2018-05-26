@@ -13,4 +13,5 @@ public interface FavoritePresenter {
   void initDataMovie (List<Movies> movies);
 
   void showError (String message);
+
 }

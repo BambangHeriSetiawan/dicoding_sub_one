@@ -1,5 +1,7 @@
 package com.simxdeveloper.catalogmovie.data.local;
 
+import android.net.Uri;
+
 /**
  * User: simx Date: 26/05/18 18:19
  */
@@ -24,7 +26,12 @@ public class TableConst {
   public static final String COLUMN_VOTE_COUNT = "vote_count";
   public static final String COLUMN_ID = "id";
 
+  public static final String AUTHORITY = "com.simxdeveloper.catalogmovie";
 
-
+  // Base content yang digunakan untuk akses content provider
+  public static final Uri CONTENT_URI = new Uri.Builder().scheme("content")
+      .authority(AUTHORITY)
+      .appendPath(TABLE_NAME_FAV)
+      .build();
 
 }
