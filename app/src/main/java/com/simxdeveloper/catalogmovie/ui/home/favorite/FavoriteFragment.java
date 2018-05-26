@@ -1,4 +1,4 @@
-package com.simxdeveloper.catalogmovie.ui.home.up_coming;
+package com.simxdeveloper.catalogmovie.ui.home.favorite;
 
 
 import android.content.Intent;
@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.local.Movies;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
 import com.simxdeveloper.catalogmovie.ui.detail.DetailActivity;
@@ -26,20 +27,20 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UpcomingFragment extends Fragment implements UpcomingFragmentPresenter {
+public class FavoriteFragment extends Fragment implements FavoritePresenter {
 
 
   @BindView(R.id.rcv_movies)
   RecyclerView rcvMovies;
-  Unbinder unbinder;
-  private UpcomingFragmentPresenterImpl presenter;
-  private AdapterMovieUpcoming adapterMovieUpcoming;
-  public UpcomingFragment () {
+  public FavoriteFragment () {
   }
 
-  public static UpcomingFragment newInstance () {
+  private FavoritePresenterImpl presenter;
+  private AdapterMovieFavorite adapterMovieFavorite;
+
+  public static FavoriteFragment newInstance () {
     Bundle args = new Bundle ();
-    UpcomingFragment fragment = new UpcomingFragment ();
+    FavoriteFragment fragment = new FavoriteFragment ();
     fragment.setArguments (args);
     return fragment;
   }
@@ -47,10 +48,12 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
   @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View view = inflater.inflate (R.layout.fragment_upcoming, container, false);
-    unbinder = ButterKnife.bind (this, view);
-    presenter = new UpcomingFragmentPresenterImpl (this);
-    adapterMovieUpcoming = new AdapterMovieUpcoming (this,new ArrayList<> ());
+    // Inflate the layout for this fragment
+    View view = inflater.inflate (R.layout.fragment_favorite, container, false);
+    ButterKnife.bind (this, view);
+    presenter = new FavoritePresenterImpl (this, getContext ());
+    adapterMovieFavorite = new AdapterMovieFavorite (this, new ArrayList<> ());
+    presenter.getFavoritMovie();
     return view;
   }
 
@@ -60,13 +63,12 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
     rcvMovies.setHasFixedSize (true);
     rcvMovies.setItemAnimator (new DefaultItemAnimator ());
     rcvMovies.setLayoutManager (new LinearLayoutManager (getContext (),LinearLayoutManager.VERTICAL,false));
-    rcvMovies.setAdapter (adapterMovieUpcoming);
-    presenter.getUpcomingMovie();
+    rcvMovies.setAdapter (adapterMovieFavorite);
   }
 
   @Override
-  public void initMovie (List<ResultsItem> results) {
-    adapterMovieUpcoming.updateAdapter (results);
+  public void initDataMovie (List<Movies> movies) {
+    adapterMovieFavorite.updateAdapter (movies);
   }
 
   @Override
@@ -75,22 +77,27 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
   }
 
   @Override
-  public void onMovieClicked (ResultsItem resultsItem) {
+  public void onMovieClicked (Movies movies) {
+    ResultsItem resultsItem = new ResultsItem ();
+    resultsItem.setAdult (movies.isAdult ());
+    resultsItem.setBackdropPath (movies.getBackdropPath ());
+    resultsItem.setId (movies.getId ());
+    resultsItem.setOriginalLanguage (movies.getOriginalLanguage ());
+    resultsItem.setOverview (movies.getOverview ());
+    resultsItem.setPopularity (movies.getPopularity ());
+    resultsItem.setPosterPath (movies.getPosterPath ());
+    resultsItem.setReleaseDate (movies.getReleaseDate ());
+    resultsItem.setOriginalLanguage (movies.getOriginalLanguage ());
     DetailActivity.start (getContext (), resultsItem);
   }
 
   @Override
-  public void onMovieShare (ResultsItem resultsItem) {
+  public void onMovieShare (Movies movies) {
     Intent intent = new Intent (Intent.ACTION_SEND);
     intent.setType ("text/plain");
-    intent.putExtra (Intent.EXTRA_TEXT, Const.IMAGE_PATH + resultsItem.getPosterPath ());
+    intent.putExtra (Intent.EXTRA_TEXT, Const.IMAGE_PATH + movies.getPosterPath ());
     intent.putExtra (Intent.EXTRA_SUBJECT, "Check out this movie!");
     startActivity (Intent.createChooser (intent, "Share"));
   }
 
-  @Override
-  public void onDestroyView () {
-    super.onDestroyView ();
-    unbinder.unbind ();
-  }
 }

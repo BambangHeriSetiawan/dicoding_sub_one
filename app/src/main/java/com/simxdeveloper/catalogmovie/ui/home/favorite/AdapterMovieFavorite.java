@@ -1,4 +1,4 @@
-package com.simxdeveloper.catalogmovie.ui.main;
+package com.simxdeveloper.catalogmovie.ui.home.favorite;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView.Adapter;
@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
@@ -13,21 +14,23 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.simxdeveloper.catalogmovie.Apps;
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.local.Movies;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
-import com.simxdeveloper.catalogmovie.ui.main.AdapterMovie.Holder;
+import com.simxdeveloper.catalogmovie.ui.home.now_play.AdapterMovieNowPlaying.Holder;
+import com.simxdeveloper.catalogmovie.ui.home.now_play.NowPlayingPresenter;
 import java.util.List;
 
 /**
  * User: simx Date: 18/05/18 23:44
  */
-public class AdapterMovie extends Adapter<Holder> {
+public class AdapterMovieFavorite extends Adapter<AdapterMovieFavorite.Holder> {
 
-  private MainPresenter presenter;
-  private List<ResultsItem> resultsItems;
+  private FavoritePresenter presenter;
+  private List<Movies> resultsItems;
 
-  public AdapterMovie (MainPresenter presenter,
-      List<ResultsItem> resultsItems) {
+  public AdapterMovieFavorite (FavoritePresenter presenter,
+      List<Movies> resultsItems) {
     this.presenter = presenter;
     this.resultsItems = resultsItems;
   }
@@ -42,13 +45,17 @@ public class AdapterMovie extends Adapter<Holder> {
 
   @Override
   public void onBindViewHolder (@NonNull Holder holder, int position) {
-    ResultsItem resultsItem = getItem (position);
-    holder.tvTitle.setText (resultsItem.getTitle ());
-    holder.tvDesc.setText (resultsItem.getOverview ());
-    holder.tvDate.setText (resultsItem.getReleaseDate ());
-    Glide.with (Apps.getContext ()).load (Const.IMAGE_PATH + resultsItem.getPosterPath ()).into (holder.imgMovie);
-    holder.itemView.setOnClickListener (v -> {
-      presenter.onMovieClicked(resultsItem);
+    Movies movies = getItem (position);
+    holder.tvTitle.setText (movies.getTitle ());
+    holder.tvDesc.setText (movies.getOverview ());
+    holder.tvDate.setText (movies.getReleaseDate ());
+    Glide.with (Apps.getContext ()).load (Const.IMAGE_PATH + movies.getPosterPath ())
+        .into (holder.imgMovie);
+    holder.btnDetail.setOnClickListener (v -> {
+      presenter.onMovieClicked (movies);
+    });
+    holder.btnShare.setOnClickListener (v -> {
+      presenter.onMovieShare(movies);
     });
   }
 
@@ -57,11 +64,11 @@ public class AdapterMovie extends Adapter<Holder> {
     return resultsItems.size ();
   }
 
-  private ResultsItem getItem (int pos) {
+  private Movies getItem (int pos) {
     return resultsItems.get (pos);
   }
 
-  public void updateAdapter (List<ResultsItem> resultsItems) {
+  public void updateAdapter (List<Movies> resultsItems) {
     this.resultsItems = resultsItems;
     notifyDataSetChanged ();
   }
@@ -76,6 +83,12 @@ public class AdapterMovie extends Adapter<Holder> {
     TextView tvDesc;
     @BindView(R.id.tv_date)
     TextView tvDate;
+
+    @BindView(R.id.btn_share)
+    Button btnShare;
+    @BindView(R.id.btn_detail)
+    Button btnDetail;
+
     public Holder (View itemView) {
       super (itemView);
       ButterKnife.bind (this, itemView);

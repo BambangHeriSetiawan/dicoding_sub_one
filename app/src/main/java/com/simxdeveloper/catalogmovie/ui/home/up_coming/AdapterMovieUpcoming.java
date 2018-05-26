@@ -14,9 +14,8 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.simxdeveloper.catalogmovie.Apps;
 import com.simxdeveloper.catalogmovie.R;
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
-import com.simxdeveloper.catalogmovie.ui.main.MainPresenter;
 import java.util.List;
 
 /**

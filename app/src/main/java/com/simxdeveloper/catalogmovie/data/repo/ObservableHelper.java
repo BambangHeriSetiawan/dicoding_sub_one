@@ -1,12 +1,10 @@
-package com.simxdeveloper.catalogmovie.data;
+package com.simxdeveloper.catalogmovie.data.repo;
 
 import com.simxdeveloper.catalogmovie.BuildConfig;
-import com.simxdeveloper.catalogmovie.data.model.discover.ResponseDiscoverMovies;
-import com.simxdeveloper.catalogmovie.data.model.now_play.ResponseNowPlaying;
-import com.simxdeveloper.catalogmovie.data.model.search.ResponseSearchMovie;
-import com.simxdeveloper.catalogmovie.data.model.upcoming.ResponseUpcoming;
-import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
-import com.simxdeveloper.catalogmovie.preference.PrefKey;
+import com.simxdeveloper.catalogmovie.data.repo.model.discover.ResponseDiscoverMovies;
+import com.simxdeveloper.catalogmovie.data.repo.model.now_play.ResponseNowPlaying;
+import com.simxdeveloper.catalogmovie.data.repo.model.search.ResponseSearchMovie;
+import com.simxdeveloper.catalogmovie.data.repo.model.upcoming.ResponseUpcoming;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

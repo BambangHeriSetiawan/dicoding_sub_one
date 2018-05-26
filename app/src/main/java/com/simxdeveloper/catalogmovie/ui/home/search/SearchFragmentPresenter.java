@@ -1,6 +1,6 @@
 package com.simxdeveloper.catalogmovie.ui.home.search;
 
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.List;
 
 /**

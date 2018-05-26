@@ -96,9 +96,7 @@ public class HomeActivity extends AppCompatActivity
     // Handle navigation view item clicks here.
     int id = item.getItemId ();
 
-    if (id == R.id.nav_in) {
-
-    } else if (id == R.id.nav_eng) {
+    if (id == R.id.nav_setting) {
 
     }
     else if (id == R.id.nav_now_playing) {

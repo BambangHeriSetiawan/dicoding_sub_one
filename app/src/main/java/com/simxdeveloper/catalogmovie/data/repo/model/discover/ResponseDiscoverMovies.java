@@ -1,9 +1,10 @@
-package com.simxdeveloper.catalogmovie.data.model.search;
+package com.simxdeveloper.catalogmovie.data.repo.model.discover;
 
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
-public class ResponseSearchMovie{
+
+public class ResponseDiscoverMovies{
 
 	@SerializedName("page")
 	private int page;
@@ -52,7 +53,7 @@ public class ResponseSearchMovie{
 	@Override
  	public String toString(){
 		return 
-			"ResponseSearchMovie{" + 
+			"ResponseDiscoverMovies{" + 
 			"page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 
 			",results = '" + results + '\'' + 

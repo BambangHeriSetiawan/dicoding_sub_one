@@ -1,13 +1,13 @@
-package com.simxdeveloper.catalogmovie.data;
+package com.simxdeveloper.catalogmovie.data.repo;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.simxdeveloper.catalogmovie.BuildConfig;
-import com.simxdeveloper.catalogmovie.data.model.discover.ResponseDiscoverMovies;
-import com.simxdeveloper.catalogmovie.data.model.now_play.ResponseNowPlaying;
-import com.simxdeveloper.catalogmovie.data.model.search.ResponseSearchMovie;
-import com.simxdeveloper.catalogmovie.data.model.upcoming.ResponseUpcoming;
+import com.simxdeveloper.catalogmovie.data.repo.model.discover.ResponseDiscoverMovies;
+import com.simxdeveloper.catalogmovie.data.repo.model.now_play.ResponseNowPlaying;
+import com.simxdeveloper.catalogmovie.data.repo.model.search.ResponseSearchMovie;
+import com.simxdeveloper.catalogmovie.data.repo.model.upcoming.ResponseUpcoming;
 import com.simxdeveloper.catalogmovie.helper.Const;
 import io.reactivex.Observable;
 import java.util.concurrent.TimeUnit;

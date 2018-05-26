@@ -1,11 +1,11 @@
-package com.simxdeveloper.catalogmovie.data.model.upcoming;
+package com.simxdeveloper.catalogmovie.data.repo.model.now_play;
 
-import com.simxdeveloper.catalogmovie.data.model.global.Dates;
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.Dates;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseUpcoming{
+public class ResponseNowPlaying{
 
 	@SerializedName("dates")
 	private Dates dates;
@@ -65,7 +65,7 @@ public class ResponseUpcoming{
 	@Override
  	public String toString(){
 		return 
-			"ResponseUpcoming{" + 
+			"ResponseNowPlaying{" + 
 			"dates = '" + dates + '\'' + 
 			",page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 

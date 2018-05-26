@@ -1,10 +1,14 @@
-package com.simxdeveloper.catalogmovie.data.model.discover;
+package com.simxdeveloper.catalogmovie.data.repo.model.upcoming;
 
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.Dates;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseDiscoverMovies{
+public class ResponseUpcoming{
+
+	@SerializedName("dates")
+	private Dates dates;
 
 	@SerializedName("page")
 	private int page;
@@ -17,6 +21,14 @@ public class ResponseDiscoverMovies{
 
 	@SerializedName("total_results")
 	private int totalResults;
+
+	public void setDates(Dates dates){
+		this.dates = dates;
+	}
+
+	public Dates getDates(){
+		return dates;
+	}
 
 	public void setPage(int page){
 		this.page = page;
@@ -53,8 +65,9 @@ public class ResponseDiscoverMovies{
 	@Override
  	public String toString(){
 		return 
-			"ResponseDiscoverMovies{" + 
-			"page = '" + page + '\'' + 
+			"ResponseUpcoming{" + 
+			"dates = '" + dates + '\'' + 
+			",page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 
 			",results = '" + results + '\'' + 
 			",total_results = '" + totalResults + '\'' + 

@@ -1,4 +1,4 @@
-package com.simxdeveloper.catalogmovie.data.model.global;
+package com.simxdeveloper.catalogmovie.data.repo.model.global;
 
 import android.os.Parcel;
 import java.util.ArrayList;

@@ -1,14 +1,9 @@
-package com.simxdeveloper.catalogmovie.data.model.now_play;
+package com.simxdeveloper.catalogmovie.data.repo.model.search;
 
-import com.simxdeveloper.catalogmovie.data.model.global.Dates;
-import com.simxdeveloper.catalogmovie.data.model.global.ResultsItem;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
-
-public class ResponseNowPlaying{
-
-	@SerializedName("dates")
-	private Dates dates;
+public class ResponseSearchMovie{
 
 	@SerializedName("page")
 	private int page;
@@ -21,14 +16,6 @@ public class ResponseNowPlaying{
 
 	@SerializedName("total_results")
 	private int totalResults;
-
-	public void setDates(Dates dates){
-		this.dates = dates;
-	}
-
-	public Dates getDates(){
-		return dates;
-	}
 
 	public void setPage(int page){
 		this.page = page;
@@ -65,9 +52,8 @@ public class ResponseNowPlaying{
 	@Override
  	public String toString(){
 		return 
-			"ResponseNowPlaying{" + 
-			"dates = '" + dates + '\'' + 
-			",page = '" + page + '\'' + 
+			"ResponseSearchMovie{" + 
+			"page = '" + page + '\'' + 
 			",total_pages = '" + totalPages + '\'' + 
 			",results = '" + results + '\'' + 
 			",total_results = '" + totalResults + '\'' + 
