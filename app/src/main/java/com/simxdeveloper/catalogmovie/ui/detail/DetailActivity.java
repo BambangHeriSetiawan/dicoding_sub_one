@@ -123,8 +123,19 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
       case R.id.nav_no_fav:
         removeFromfavorite();
         break;
+      case R.id.nav_share:
+        shareMovie();
+        break;
     }
     return super.onOptionsItemSelected (item);
+  }
+
+  private void shareMovie () {
+    Intent intent = new Intent(Intent.ACTION_SEND);
+    intent.setType("text/plain");
+    intent.putExtra(Intent.EXTRA_TEXT, Const.IMAGE_PATH + detailMovie.getPosterPath ());
+    intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this movie!");
+    startActivity(Intent.createChooser(intent, "Share"));
   }
 
   private void removeFromfavorite () {

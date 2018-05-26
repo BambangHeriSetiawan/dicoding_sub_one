@@ -7,4 +7,10 @@
     android:icon="@drawable/ic_favorite_white_24dp"
     android:title="@string/favorit"
     app:showAsAction="always"/>
+  <item
+    android:id="@+id/nav_share"
+    android:orderInCategory="100"
+    android:icon="@drawable/ic_menu_share"
+    android:title="@string/favorit"
+    app:showAsAction="always"/>
 </menu>
