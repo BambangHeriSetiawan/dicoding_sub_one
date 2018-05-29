@@ -21,6 +21,7 @@ import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
 import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.home.adapter.HomePageAdapter;
+import com.simxdeveloper.favorit.main.FavActivity;
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity
@@ -99,24 +100,40 @@ public class HomeActivity extends AppCompatActivity
   public boolean onNavigationItemSelected (MenuItem item) {
     // Handle navigation view item clicks here.
     int id = item.getItemId ();
+    switch (id) {
+      case R.id.nav_setting:
+        changeSettingLanguage ();
+        break;
+      case R.id.nav_now_playing:
+        homeView.setCurrentItem (0);
+        break;
+      case R.id.nav_upcoming:
+        homeView.setCurrentItem (1);
+        break;
+      case R.id.nav_search:
+        homeView.setCurrentItem (2);
+        break;
+      case R.id.nav_show_fav:
+        openFav();
+        break;
 
-    if (id == R.id.nav_setting) {
-      changeSettingLanguage ();
-    }
-    else if (id == R.id.nav_now_playing) {
-      homeView.setCurrentItem (0);
-    }
-    else if (id == R.id.nav_upcoming) {
-      homeView.setCurrentItem (1);
-    }
-    else if (id == R.id.nav_search) {
-      homeView.setCurrentItem (2);
-    }
-    else if (id == R.id.nav_show_fav) {
-      homeView.setCurrentItem (3);
     }
     drawer.closeDrawer (GravityCompat.START);
-    return true;
+    return false;
+  }
+
+  private void openFav () {
+    Log.e ("HomeActivity", "openFav: " );
+    /*Intent intent = new Intent (this, FavActivity.class);
+    startActivity (intent);*/
+    Intent intent = null;
+    try {
+      intent = new Intent(this,
+          Class.forName("com.simxdeveloper.favorit.main.FavActivity"));
+      startActivity(intent);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override

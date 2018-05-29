@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,7 +23,6 @@ import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.data.local.MovieDatabaseHelper;
 import com.simxdeveloper.catalogmovie.data.local.Movies;
 import com.simxdeveloper.catalogmovie.data.local.TableConst;
-import com.simxdeveloper.catalogmovie.data.provider.MovieContentProvider;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
 
@@ -55,11 +55,11 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
   TextView tvOverview;
 
   private DetailPresenterImpl presenter;
-  private ResultsItem detailMovie;
   private boolean isFav;
   private Uri uri;
   private MovieDatabaseHelper helper;
   private Movies movies;
+  private ResultsItem detailMovie;
 
   public static void start(Context context, Uri uri, boolean fav) {
       Intent starter = new Intent(context, DetailActivity.class);
@@ -91,12 +91,13 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
         initUi (detailMovie);
       }else {
         uri = getIntent().getData();
-        Log.e ("DetailActivity", "onCreate: " + uri.toString ());
+        Log.e ("DetailFavActivity", "onCreate: " + uri.toString ());
         presenter.cursorCheck (uri);
         if (uri != null) {
           Cursor cursor = getContentResolver().query(uri, null, null, null, null);
           if (cursor != null){
             if(cursor.moveToFirst()) movies = new Movies (cursor);
+            initFromCursor (movies);
             cursor.close();
           }
         }
@@ -108,18 +109,19 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
   }
 
   private void initUi (ResultsItem detailMovie) {
-    Log.e ("DetailActivity", "initUi: " + detailMovie.toString ());
+    getSupportActionBar ().setTitle (detailMovie.getTitle ());
     Glide.with (this).load (Const.IMAGE_PATH + detailMovie.getPosterPath ()).into (imgPoster);
     tvTitle.setText (detailMovie.getTitle ());
     tvTitileOri.setText (detailMovie.getOriginalTitle ());
     tvReleaseDate.setText (detailMovie.getReleaseDate ());
     tvOverview.setText (detailMovie.getOverview ());
-    rating.setRating ((float) detailMovie.getVoteAverage ());
+    rating.setRating ((float) detailMovie.getVoteCount ());
   }
+
 
   @Override
   public void initFromCursor (Movies detailMovie) {
-    Log.e ("DetailActivity", "initUi: " + detailMovie.toString ());
+    Log.e ("DetailFavActivity", "initUi: " + detailMovie.toString ());
     getSupportActionBar ().setTitle (detailMovie.getTitle ());
     Glide.with (this).load (Const.IMAGE_PATH + detailMovie.getPosterPath ()).into (imgPoster);
     tvTitle.setText (detailMovie.getTitle ());
@@ -144,7 +146,7 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
 
   @Override
   public boolean onCreateOptionsMenu (Menu menu) {
-    Log.e ("DetailActivity", "onCreateOptionsMenu: " + isFav);
+    Log.e ("DetailFavActivity", "onCreateOptionsMenu: " + isFav);
     if (isFav){
       getMenuInflater ().inflate (R.menu.detail_menu_is_fav,menu);
     }else {
@@ -176,7 +178,12 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
   private void shareMovie () {
     Intent intent = new Intent(Intent.ACTION_SEND);
     intent.setType("text/plain");
-    intent.putExtra(Intent.EXTRA_TEXT, Const.IMAGE_PATH + detailMovie.getPosterPath ());
+    if (isFav){
+      intent.putExtra(Intent.EXTRA_TEXT, Const.IMAGE_PATH + movies.getPosterPath ());
+    }else {
+      intent.putExtra(Intent.EXTRA_TEXT, Const.IMAGE_PATH + detailMovie.getPosterPath ());
+    }
+
     intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out this movie!");
     startActivity(Intent.createChooser(intent, "Share"));
   }

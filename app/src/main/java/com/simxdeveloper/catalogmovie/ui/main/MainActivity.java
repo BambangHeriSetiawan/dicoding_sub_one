@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
   @Override
   protected void onCreate (Bundle savedInstanceState) {
     super.onCreate (savedInstanceState);
-    setContentView (R.layout.activity_main);
+    setContentView (R.layout.activity_fav);
     ButterKnife.bind (this);
     initActionBar();
     presenter = new MainPresenterImpl (this);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
    * Config Actionbar
    */
   private void initActionBar () {
-    Log.e ("MainActivity", "initActionBar: " + getSupportActionBar ());
+    Log.e ("FavActivity", "initActionBar: " + getSupportActionBar ());
     setSupportActionBar (toolbar);
     getSupportActionBar ().setDisplayShowTitleEnabled (true);
     getSupportActionBar ().setTitle ("Dicoding");

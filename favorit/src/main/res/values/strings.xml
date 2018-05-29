@@ -1,0 +1,24 @@
+<resources>
+  <string name="app_name">Catalog Movie Favotire</string>
+  <string name="offline_meesage">Tidak Ada koneksi internet</string>
+  <string name="tyr_again_meesage">Coba lagi</string>
+  <string name="data_not_found">Data Tidak Ditemukan</string>
+  <string name="tx_search">Search</string>
+  <string name="title_activity_home">HomeActivity</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Android Studio</string>
+  <string name="nav_header_subtitle">android.studio@android.com</string>
+  <string name="nav_header_desc">Navigation header</string>
+  <string name="action_settings">Ganti Bahasa</string>
+  <string name="favorit">Favorit</string>
+
+  <string name="language">Pilih Bahasa</string>
+  <string name="language_in">Indonesia</string>
+  <string name="language_en">Inggris</string>
+  <string name="now_playing">Dedang Dimainkan</string>
+  <string name="upcoming">Akan Datang</string>
+  <string name="search">Cari</string>
+  <string name="detail">Detail</string>
+  <string name="share">Bagikan</string>
+</resources>
