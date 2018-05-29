@@ -213,7 +213,18 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
 
   private void showAddMessage (String message) {
     Toast.makeText (this,message,Toast.LENGTH_SHORT).show ();
-    onBackPressed ();
+    openFav();
+  }
+
+  private void openFav () {
+    Intent intent = null;
+    try {
+      intent = new Intent(this,
+          Class.forName("com.simxdeveloper.favorit.main.FavActivity"));
+      startActivity(intent);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
 }

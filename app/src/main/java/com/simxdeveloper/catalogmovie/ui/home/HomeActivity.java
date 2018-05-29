@@ -123,9 +123,6 @@ public class HomeActivity extends AppCompatActivity
   }
 
   private void openFav () {
-    Log.e ("HomeActivity", "openFav: " );
-    /*Intent intent = new Intent (this, FavActivity.class);
-    startActivity (intent);*/
     Intent intent = null;
     try {
       intent = new Intent(this,
