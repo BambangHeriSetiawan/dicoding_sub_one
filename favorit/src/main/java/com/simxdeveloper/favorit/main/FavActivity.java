@@ -49,7 +49,6 @@ public class FavActivity extends AppCompatActivity implements MainPresenter {
     getSupportActionBar ().setTitle (getString (R.string.favorit));
     getSupportActionBar ().setDisplayShowTitleEnabled (true);
     getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
-    getSupportActionBar ().setHomeAsUpIndicator (R.drawable.ic_arrow_back_black_24dp);
   }
 
   @Override
@@ -110,13 +109,4 @@ public class FavActivity extends AppCompatActivity implements MainPresenter {
     }
     };
 
-  @Override
-  public boolean onOptionsItemSelected (MenuItem item) {
-    switch (item.getItemId ()) {
-      case android.R.id.home:
-        onBackPressed ();
-        break;
-    }
-    return super.onOptionsItemSelected (item);
-  }
 }

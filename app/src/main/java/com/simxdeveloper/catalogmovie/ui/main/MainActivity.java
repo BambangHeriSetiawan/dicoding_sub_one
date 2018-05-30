@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainPresenter {
   @Override
   protected void onCreate (Bundle savedInstanceState) {
     super.onCreate (savedInstanceState);
-    setContentView (R.layout.activity_fav);
+    setContentView (R.layout.activity_main);
     ButterKnife.bind (this);
     initActionBar();
     presenter = new MainPresenterImpl (this);

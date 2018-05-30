@@ -21,7 +21,7 @@ import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
 import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.home.adapter.HomePageAdapter;
-import com.simxdeveloper.favorit.main.FavActivity;
+
 import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity
@@ -114,23 +114,12 @@ public class HomeActivity extends AppCompatActivity
         homeView.setCurrentItem (2);
         break;
       case R.id.nav_show_fav:
-        openFav();
+        homeView.setCurrentItem (3);
         break;
 
     }
     drawer.closeDrawer (GravityCompat.START);
     return false;
-  }
-
-  private void openFav () {
-    Intent intent = null;
-    try {
-      intent = new Intent(this,
-          Class.forName("com.simxdeveloper.favorit.main.FavActivity"));
-      startActivity(intent);
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    }
   }
 
   @Override
