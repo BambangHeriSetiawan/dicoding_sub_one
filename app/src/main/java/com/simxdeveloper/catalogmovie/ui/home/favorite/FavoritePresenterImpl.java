@@ -12,10 +12,6 @@ public class FavoritePresenterImpl {
       FavoritePresenter presenter, Context context) {
     this.presenter = presenter;
     this.context = context;
-
   }
 
-  public void getFavoritMovie () {
-
-  }
 }

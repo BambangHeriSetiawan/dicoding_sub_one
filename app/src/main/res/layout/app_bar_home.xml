@@ -3,9 +3,10 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
-  android:fitsSystemWindows="true"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  app:layout_scrollFlags="scroll|enterAlways"
   tools:context="com.simxdeveloper.catalogmovie.ui.home.HomeActivity">
   <android.support.design.widget.AppBarLayout
     android:layout_width="match_parent"
@@ -20,9 +21,5 @@
       app:tabMode="fixed"
       app:tabContentStart="72dp"/>
   </android.support.design.widget.AppBarLayout>
-  <android.support.v4.view.ViewPager
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    android:id="@+id/home_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+  <include layout="@layout/content_main"/>
 </android.support.design.widget.CoordinatorLayout>

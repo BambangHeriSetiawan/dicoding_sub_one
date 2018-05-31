@@ -4,15 +4,15 @@
   tools:showIn="navigation_view">
   <item
     android:id="@+id/nav_now_playing"
-    android:icon="@drawable/ic_menu_share"
+    android:icon="@drawable/ic_menu_slideshow"
     android:title="@string/now_playing"/>
   <item
     android:id="@+id/nav_upcoming"
-    android:icon="@drawable/ic_menu_share"
+    android:icon="@drawable/ic_menu_slideshow"
     android:title="@string/upcoming"/>
   <item
     android:id="@+id/nav_search"
-    android:icon="@drawable/ic_menu_share"
+    android:icon="@drawable/ic_search_white_24dp"
     android:title="@string/search"/>
   <item
     android:id="@+id/nav_show_fav"
@@ -23,8 +23,9 @@
     <menu>
       <item
         android:id="@+id/nav_setting"
-        android:icon="@drawable/ic_menu_share"
+        android:icon="@drawable/ic_settings_white_24dp"
         android:title="@string/action_settings"/>
+
     </menu>
   </item>
 

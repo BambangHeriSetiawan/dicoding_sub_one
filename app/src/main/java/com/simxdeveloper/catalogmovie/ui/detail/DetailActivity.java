@@ -25,6 +25,7 @@ import com.simxdeveloper.catalogmovie.data.local.Movies;
 import com.simxdeveloper.catalogmovie.data.local.TableConst;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
+import com.simxdeveloper.catalogmovie.widget.MoviesStackWidgetService;
 
 
 public class DetailActivity extends AppCompatActivity implements DetailPresenter {
@@ -207,6 +208,7 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
     values.put(TableConst.COLUMN_POPULARITY,detailMovie.getPopularity ());
     values.put(TableConst.COLUMN_VOTE_COUNT,detailMovie.getVoteCount ());
     getApplicationContext ().getContentResolver ().insert (TableConst.CONTENT_URI,values);
+
     showAddMessage ("Add to favorite");
 
   }

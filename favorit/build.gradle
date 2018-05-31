@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        //applicationId "com.simxdeveloper.favorit"
+        applicationId "com.simxdeveloper.favorit"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode gitVersionCode

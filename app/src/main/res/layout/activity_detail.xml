@@ -11,8 +11,8 @@
   android:layout_height="wrap_content">
   <android.support.design.widget.CollapsingToolbarLayout
     android:layout_width="match_parent"
-    app:layout_scrollFlags="snap|exitUntilCollapsed|scroll"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:layout_scrollFlags="snap|exitUntilCollapsed|scroll">
     <include layout="@layout/base_toolbar"/>
     <FrameLayout
       android:layout_width="match_parent"
@@ -34,42 +34,92 @@
       android:orientation="vertical"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
-      <RatingBar
-        android:id="@+id/rating"
-        android:foregroundGravity="center"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:layout_gravity="bottom|center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-      <TextView
-        android:id="@+id/tv_title"
-        android:textStyle="bold"
-        android:text="Title"
-        android:textSize="20sp"
-        android:layout_margin="4dp"
+      <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-      <TextView
-        android:textSize="8sp"
-        android:id="@+id/tv_release_date"
-        android:layout_margin="4dp"
-        android:textStyle="italic"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-      <TextView
-        android:id="@+id/tv_titile_ori"
-        android:layout_margin="4dp"
-        android:textStyle="normal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-      <TextView
-        android:id="@+id/tv_overview"
-        android:layout_margin="4dp"
-        android:textStyle="normal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+            android:textStyle="bold"
+            android:text="Rating"
+            android:textSize="20sp"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+          <RatingBar
+            android:id="@+id/rating"
+            android:foregroundGravity="center"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:layout_gravity="bottom|center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
 
+      </android.support.v7.widget.CardView>
+      <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+            android:id="@+id/tv_title"
+            android:textStyle="bold"
+            android:text="Title"
+            android:textSize="20sp"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+          <TextView
+            android:id="@+id/tv_titile_ori"
+            android:layout_margin="4dp"
+            android:textStyle="normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+      </android.support.v7.widget.CardView>
+      <android.support.v7.widget.CardView
+        android:layout_margin="5dp"
+        app:cardCornerRadius="@dimen/cardview_default_radius"
+        app:cardElevation="@dimen/cardview_default_elevation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+            android:textStyle="bold"
+            android:text="Rating"
+            android:textSize="20sp"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+          <TextView
+            android:id="@+id/tv_overview"
+            android:layout_margin="4dp"
+            android:textStyle="normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+          <TextView
+            android:textSize="8sp"
+            android:id="@+id/tv_release_date"
+            android:layout_margin="4dp"
+            android:textStyle="italic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        </LinearLayout>
+      </android.support.v7.widget.CardView>
     </LinearLayout>
   </android.support.v4.widget.NestedScrollView>
 

@@ -23,7 +23,7 @@ android {
     }
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "dicoding-katalog-movie${variant.buildType.name}-${variant.versionName}-${variant.versionCode}.apk";
+            outputFileName = "katalog-movie${variant.buildType.name}-${variant.versionName}-${variant.versionCode}.apk";
         }
     }
 
