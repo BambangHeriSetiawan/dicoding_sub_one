@@ -19,4 +19,5 @@ public class PrefKey {
   public static final String IS_ALARAM_AT_7 = "is_seven";
   public static final String IS_ALARAM_AT_8 = "is_eight";
 
+  private final String KEY_REPEATING_TIME = "repeatingTime";
 }

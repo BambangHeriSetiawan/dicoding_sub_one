@@ -1,13 +1,10 @@
 package com.simxdeveloper.catalogmovie.ui.home;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
@@ -23,7 +20,7 @@ import android.view.MenuItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.simxdeveloper.catalogmovie.R;
-import com.simxdeveloper.catalogmovie.broadcast.NotificationPublisher;
+import com.simxdeveloper.catalogmovie.broadcast.ReciverScheduleSeven;
 import com.simxdeveloper.catalogmovie.preference.GlobalPreference;
 import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import com.simxdeveloper.catalogmovie.ui.home.adapter.HomePageAdapter;
@@ -138,13 +135,12 @@ public class HomeActivity extends AppCompatActivity
     GlobalPreference.write (PrefKey.REGION,region,String.class);
   }
   private void setTimeSevent () {
-    Log.e ("HomeActivity", "setTimeSevent: " );
     Calendar calendar = Calendar.getInstance ();
     calendar.set(Calendar.HOUR_OF_DAY, 21);
     calendar.set(Calendar.MINUTE, 19);
     calendar.set(Calendar.SECOND, 0);
     Log.e ("HomeActivity", "setTimeSevent: " + calendar.getTime ());
-    Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+    Intent notificationIntent = new Intent(this, ReciverScheduleSeven.class);
     PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
     AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
     alarmManager.setRepeating (AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis (),AlarmManager.INTERVAL_DAY,pendingIntent);

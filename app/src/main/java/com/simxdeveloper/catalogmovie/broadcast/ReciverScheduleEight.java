@@ -10,37 +10,54 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Build.VERSION;
+import android.os.Build.VERSION_CODES;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.data.repo.ObservableHelper;
+import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import java.util.Random;
+import java.util.function.Consumer;
 
 /**
  * User: simx Date: 01/06/18 20:00
  */
-public class NotificationPublisher extends BroadcastReceiver{
-  public static String NOTIFICATION_ID = "notification-id";
-  public static String NOTIFICATION = "notification";
-
+public class ReciverScheduleEight extends BroadcastReceiver{
+  public static String NOTIFICATION_ID = "notification-id-8";
   @Override
   public void onReceive (Context context, Intent intent) {
+    ObservableHelper.nowPlayingObservable ().subscribe (
+        responseNowPlaying -> {
+          if (VERSION.SDK_INT >= VERSION_CODES.N) {
+            responseNowPlaying.getResults ().forEach (resultsItem -> {
+              showNotification (resultsItem.getTitle ());
+            });
+          }else {
+            for (int i = 0; i < responseNowPlaying.getResults ().size (); i++) {
+              showNotification (responseNowPlaying.getResults ().get (i).getTitle ());
+            }
+          }
+        }
+    );
+  }
+  private void showNotification(String title){
     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     long[] pattern = {500,500,500,500,500,500,500,500,500};
-    Log.e ("NotificationPublisher", "onReceive: " );
+    Log.e ("ReciverScheduleSeven", "onReceive: " );
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      NotificationChannel channel = new NotificationChannel(TAG, "Job Demo Seven", NotificationManager.IMPORTANCE_LOW);
-      channel.setDescription("Job demo job");
+      NotificationChannel channel = new NotificationChannel(TAG, title, NotificationManager.IMPORTANCE_LOW);
+      channel.setDescription("Hari ini "+ title + " release");
       channel.setVibrationPattern (pattern);
       getContext().getSystemService(NotificationManager.class).createNotificationChannel(channel);
     }
     Notification notification = new NotificationCompat.Builder(getContext(), TAG)
-        .setContentTitle("ID ")
-        .setContentText("Job ran, exact ")
+        .setContentTitle(title)
+        .setContentText("Hari ini "+ title + " release")
         .setAutoCancel(true)
         .setChannelId(TAG)
         .setVibrate (pattern)

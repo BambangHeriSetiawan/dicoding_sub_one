@@ -1,6 +1,9 @@
 package com.simxdeveloper.catalogmovie.ui.setting;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,12 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.simxdeveloper.catalogmovie.BuildConfig;
 import com.simxdeveloper.catalogmovie.R;
+import com.simxdeveloper.catalogmovie.broadcast.ReciverScheduleSeven;
 import com.simxdeveloper.catalogmovie.helper.TimePickerDialogFragment;
 import com.simxdeveloper.catalogmovie.preference.AlaramPreference;
 import com.simxdeveloper.catalogmovie.preference.PrefKey;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class SettingsActivity extends PreferenceActivity {
   private AppCompatDelegate mDelegate;
@@ -33,6 +38,8 @@ public class SettingsActivity extends PreferenceActivity {
   private Preference pref_daily_update_time;
   private SwitchPreference pref_notifications_daily_update;
   private SwitchPreference pref_notifications_daily_remember;
+  private AlarmManager alarmManager;
+  private ReciverScheduleSeven reciverScheduleSeven;
 
   @Override
   protected void onCreate (Bundle savedInstanceState) {
@@ -44,7 +51,8 @@ public class SettingsActivity extends PreferenceActivity {
     getSupportActionBar ().setDisplayHomeAsUpEnabled (true);
     getSupportActionBar ().setHomeAsUpIndicator (getResources ().getDrawable (R.drawable.ic_arrow_back_white_24dp));
     addPreferencesFromResource (R.xml.pref_notification);
-
+    alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+    reciverScheduleSeven = new ReciverScheduleSeven ();
 
     /**
      * Change Langguage
@@ -54,6 +62,7 @@ public class SettingsActivity extends PreferenceActivity {
       changeSettingLanguage ();
       return true;
     });
+    pref_change_language.setTitle (Locale.getDefault().getDisplayLanguage());
     /**
      * Show version app
      */
@@ -67,7 +76,7 @@ public class SettingsActivity extends PreferenceActivity {
     pref_notifications_daily_remember.setChecked (AlaramPreference.read (PrefKey.IS_ALARAM_AT_7,Boolean.class));
     pref_notifications_daily_remember.setOnPreferenceChangeListener (
         (preference, newValue) -> {
-          updatePreferenceRemainder(((SwitchPreference)preference).isEnabled ());
+          updatePreferenceRemainder(((SwitchPreference)preference).isChecked ());
           return true;
         });
     pref_daily_remainder_time = (Preference) findPreference(getResources ().getString (R.string.pref_notifications_daily_remember_time));
@@ -82,7 +91,7 @@ public class SettingsActivity extends PreferenceActivity {
     pref_notifications_daily_update = (SwitchPreference) findPreference(getResources ().getString (R.string.pref_notifications_daily_update));
     pref_notifications_daily_update.setChecked (AlaramPreference.read (PrefKey.IS_ALARAM_AT_8,Boolean.class));
     pref_notifications_daily_update.setOnPreferenceChangeListener ((preference, newValue) -> {
-      updateDailyUpdatePreference(((SwitchPreference)preference).isEnabled ());
+      updateDailyUpdatePreference(((SwitchPreference)preference).isChecked ());
       return true;
     });
     pref_daily_update_time = (Preference) findPreference(getResources ().getString (R.string.pref_notifications_daily_update_time));
@@ -94,7 +103,7 @@ public class SettingsActivity extends PreferenceActivity {
     /**
      * Check time from preference
      */
-    Log.e ("SettingsActivity", "onCreate: " + AlaramPreference.read (PrefKey.ALARAM_AT_7,String.class));
+
     if (AlaramPreference.read (PrefKey.ALARAM_AT_7,String.class).length ()!=0){
       pref_daily_remainder_time.setTitle (formateTime (new Long (AlaramPreference.read (PrefKey.ALARAM_AT_7,String.class))));
     }
@@ -105,15 +114,16 @@ public class SettingsActivity extends PreferenceActivity {
   }
 
   private void updateDailyUpdatePreference (Boolean isChecked) {
-    Log.e ("SettingsActivity", "updateDailyUpdatePreference: " + !isChecked);
+
     pref_notifications_daily_update.setChecked (!isChecked);
     AlaramPreference.write (PrefKey.IS_ALARAM_AT_8,!isChecked,Boolean.class);
+    Log.e ("SettingsActivity", "updateDailyUpdatePreference: " + AlaramPreference.read (PrefKey.IS_ALARAM_AT_8,Boolean.class));
   }
 
   private void updatePreferenceRemainder (Boolean isChecked) {
-    Log.e ("SettingsActivity", "updatePreferenceRemainder: " + !isChecked);
     pref_notifications_daily_remember.setChecked (!isChecked);
-    AlaramPreference.write (PrefKey.IS_ALARAM_AT_8,!isChecked,Boolean.class);
+    AlaramPreference.write (PrefKey.IS_ALARAM_AT_7,!isChecked,Boolean.class);
+    Log.e ("SettingsActivity", "updatePreferenceRemainder: " + AlaramPreference.read (PrefKey.IS_ALARAM_AT_7,Boolean.class));
   }
 
   @Override
@@ -212,19 +222,19 @@ public class SettingsActivity extends PreferenceActivity {
   }
 
   private TimePickerDialog.OnTimeSetListener dailyRemainderListener = (view, hourOfDay, minute) -> {
-    long time_milis = getTimeFromMillis (hourOfDay,minute);
-    AlaramPreference.write (PrefKey.ALARAM_AT_7,time_milis,Long.class);
-    pref_daily_remainder_time.setTitle (formateTime (time_milis));
+    AlaramPreference.write (PrefKey.ALARAM_AT_7,String.valueOf (getTimeFromMillis (hourOfDay,minute)),String.class);
+    pref_daily_remainder_time.setTitle (formateTime (getTimeFromMillis (hourOfDay,minute)));
+    reciverScheduleSeven.setRepeatingAlarm (getApplicationContext (),hourOfDay,minute,ReciverScheduleSeven.NOTIF_ID_REPEATING_REMAINDER_DAY);
   };
 
   private TimePickerDialog.OnTimeSetListener dailyUpdateListener = (view, hourOfDay, minute) -> {
-    long time_milis = getTimeFromMillis (hourOfDay,minute);
-    AlaramPreference.write (PrefKey.ALARAM_AT_8,time_milis,Long.class);
-    pref_daily_update_time.setTitle (formateTime (time_milis));
+    AlaramPreference.write (PrefKey.ALARAM_AT_8,String.valueOf (getTimeFromMillis (hourOfDay,minute)),String.class);
+    pref_daily_update_time.setTitle (formateTime (getTimeFromMillis (hourOfDay,minute)));
+    reciverScheduleSeven.setRepeatingAlarm (getApplicationContext (),hourOfDay,minute, ReciverScheduleSeven.NOTIF_ID_REPEATING_UPDATE);
   };
 
   private String formateTime(long time){
-    DateFormat sdfDate = new SimpleDateFormat("HH:mm");
+    DateFormat sdfDate = new SimpleDateFormat("HH:mm",Locale.getDefault());
     String strDate = sdfDate.format(time);
     return strDate;
   }

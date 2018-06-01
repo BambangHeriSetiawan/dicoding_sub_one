@@ -7,7 +7,8 @@
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permissions.READ_DATABASE"/>
   <uses-permission android:name="android.permissioms.WRITE_DATABASE"/>
-  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
   <uses-permission android:name="android.permission.SET_ALARM"/>
 
   <permission
@@ -67,8 +68,12 @@
       android:name="com.evernote.android.job.gcm.PlatformGcmService"
       tools:replace="android:enabled"/>
 
-    <receiver android:name=".broadcast.NotificationPublisher"/>
-
+    <receiver android:name=".broadcast.ReciverScheduleSeven"
+      android:enabled="true"
+      android:exported="true"/>
+    <receiver android:name=".broadcast.ReciverScheduleEight"
+      android:enabled="true"
+      android:exported="true"/>
     <activity
       android:label="@string/title_activity_settings"
       android:name=".ui.setting.SettingsActivity">

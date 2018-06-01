@@ -23,19 +23,16 @@ public class Apps  extends Application{
     String lang = Locale.getDefault ().getLanguage ();
     GlobalPreference.write (PrefKey.LANGUAGE,lang+"-"+region,String.class);
     GlobalPreference.write (PrefKey.REGION,region,String.class);
-    Log.e ("Apps", "onCreate: " + AlaramPreference.read (PrefKey.ALARAM_AT_7,Long.class));
-    Log.e ("Apps", "onCreate: " + AlaramPreference.read (PrefKey.ALARAM_AT_8,Long.class));
-    if (AlaramPreference.read (PrefKey.ALARAM_AT_7,Long.class)==null){
+    if (AlaramPreference.read (PrefKey.ALARAM_AT_7,String.class).length ()==0){
       setDefaultTimeRemainder();
     }
-    if (AlaramPreference.read (PrefKey.ALARAM_AT_8,Long.class)==null){
+    if (AlaramPreference.read (PrefKey.ALARAM_AT_8,String.class).length ()==0){
       setDefaultTimeUpdate();
     }
 
   }
 
   private void setDefaultTimeUpdate () {
-    Log.e ("Apps", "setDefaultTimeUpdate: " );
     Calendar calendar = Calendar.getInstance ();
     calendar.setTimeInMillis (System.currentTimeMillis ());
     calendar.set (Calendar.HOUR_OF_DAY,8);
@@ -46,7 +43,6 @@ public class Apps  extends Application{
   }
 
   private void setDefaultTimeRemainder () {
-    Log.e ("Apps", "setDefaultTimeRemainder: " );
     Calendar calendar = Calendar.getInstance ();
     calendar.setTimeInMillis (System.currentTimeMillis ());
     calendar.set (Calendar.HOUR_OF_DAY,7);
