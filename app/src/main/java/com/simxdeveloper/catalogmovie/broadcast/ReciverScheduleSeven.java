@@ -147,7 +147,7 @@ public class ReciverScheduleSeven extends BroadcastReceiver{
         .setVibrate (pattern)
         .setSound (alarmSound)
         .setContentIntent (pendingIntent)
-        .setStyle (new InboxStyle ())
+        .setStyle (new InboxStyle ().setBigContentTitle (Apps.getContext ().getResources ().getString (R.string.app_name) + " Missing you.. "))
         .setPriority (NotificationManager.IMPORTANCE_HIGH)
         .setSmallIcon(R.mipmap.ic_launcher)
         .setShowWhen(true)
