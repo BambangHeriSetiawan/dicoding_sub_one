@@ -1,5 +1,6 @@
 package com.simxdeveloper.catalogmovie.ui.detail;
 
+import android.appwidget.AppWidgetManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
@@ -23,8 +25,10 @@ import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.data.local.MovieDatabaseHelper;
 import com.simxdeveloper.catalogmovie.data.local.Movies;
 import com.simxdeveloper.catalogmovie.data.local.TableConst;
+import com.simxdeveloper.catalogmovie.data.provider.MovieContentProvider;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
 import com.simxdeveloper.catalogmovie.helper.Const;
+import com.simxdeveloper.catalogmovie.widget.MovieFavoriteWidget;
 import com.simxdeveloper.catalogmovie.widget.MoviesStackWidgetService;
 
 
@@ -208,12 +212,13 @@ public class DetailActivity extends AppCompatActivity implements DetailPresenter
     values.put(TableConst.COLUMN_POPULARITY,detailMovie.getPopularity ());
     values.put(TableConst.COLUMN_VOTE_COUNT,detailMovie.getVoteCount ());
     getApplicationContext ().getContentResolver ().insert (TableConst.CONTENT_URI,values);
-
     showAddMessage ("Add to favorite");
 
   }
 
   private void showAddMessage (String message) {
+    RemoteViews rv = new RemoteViews(this.getPackageName(), R.layout.widget_favorite_item);
+    AppWidgetManager.getInstance (this).updateAppWidget ((int) System.currentTimeMillis (),rv);
     Toast.makeText (this,message,Toast.LENGTH_SHORT).show ();
     onBackPressed ();
   }

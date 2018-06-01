@@ -20,5 +20,17 @@
   <string name="search">Cari</string>
   <string name="detail">Detail</string>
   <string name="share">Bagikan</string>
+  <string name="notification">Pemberitahuan</string>
+  <string name="pref_title_daily_notification">Pemberitahuan Harian</string>
+  <string name="pref_title_daily_update">Pemberitahuan Film Terbaru</string>
+  <string name="pref_title_allow_notification">Ijikan Pemberitahuan</string>
+  <string name="action_settings_lang">Bahasa</string>
+  <string name="pref_notifications_daily_remember">allow_notifications_daily_remember</string>
+  <string name="pref_notifications_daily_update">allow_notifications_daily_update</string>
+  <string name="pref_change_language">pref_change_language</string>
+  <string name="pref_notifications_daily_remember_time">pref_title_daily_notification_time</string>
+  <string name="pref_notifications_daily_update_time">pref_title_daily_update_time</string>
+  <string name="version_title">Versi</string>
+  <string name="pref_version">pref_version</string>
 
 </resources>

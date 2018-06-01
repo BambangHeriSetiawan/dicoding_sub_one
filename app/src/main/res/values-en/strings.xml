@@ -10,7 +10,7 @@
   <string name="nav_header_title">Android Studio</string>
   <string name="nav_header_subtitle">android.studio@android.com</string>
   <string name="nav_header_desc">Navigation header</string>
-  <string name="action_settings">Change language</string>
+  <string name="action_settings">Setting</string>
   <string name="favorit">Favorite</string>
   <string name="language">Select a language</string>
   <string name="language_in">Indonesia</string>
@@ -20,5 +20,17 @@
   <string name="search">Search</string>
   <string name="detail">Details</string>
   <string name="share">Share</string>
+  <string name="notification">Notification</string>
+  <string name="pref_title_daily_notification">Daily Notification</string>
+  <string name="pref_title_daily_update">Daily Update Movie</string>
+  <string name="pref_title_allow_notification">Allow Notification</string>
+  <string name="action_settings_lang">Language</string>
+  <string name="pref_notifications_daily_remember">allow_notifications_daily_remember</string>
+  <string name="pref_notifications_daily_update">allow_notifications_daily_update</string>
+  <string name="pref_change_language">pref_change_language</string>
+  <string name="pref_notifications_daily_remember_time">pref_title_daily_notification_time</string>
+  <string name="pref_notifications_daily_update_time">pref_title_daily_update_time</string>
+  <string name="version_title">Version</string>
+  <string name="pref_version">pref_version</string>
 
 </resources>

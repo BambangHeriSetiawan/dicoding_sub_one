@@ -1,0 +1,32 @@
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+  <PreferenceCategory android:title="@string/pref_title_daily_notification">
+    <SwitchPreference
+      android:key="@string/pref_notifications_daily_remember"
+      android:title="@string/pref_title_allow_notification"/>
+    <Preference
+      android:dependency="@string/pref_notifications_daily_remember"
+      android:key="@string/pref_notifications_daily_remember_time"/>
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/pref_title_daily_update">
+    <SwitchPreference
+      android:key="@string/pref_notifications_daily_update"
+      android:title="@string/pref_title_allow_notification"/>
+    <Preference
+      android:dependency="@string/pref_notifications_daily_update"
+      android:key="@string/pref_notifications_daily_update_time"/>
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/action_settings_lang">
+    <Preference
+      android:title="@string/action_settings_lang"
+      android:key="@string/pref_change_language"/>
+  </PreferenceCategory>
+
+  <PreferenceCategory android:title="@string/version_title">
+    <Preference
+      android:key="@string/pref_version"/>
+  </PreferenceCategory>
+
+</PreferenceScreen>

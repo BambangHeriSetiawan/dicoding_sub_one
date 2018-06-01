@@ -12,7 +12,6 @@ public class MoviesStackWidgetService extends RemoteViewsService{
 
   @Override
   public RemoteViewsFactory onGetViewFactory (Intent intent) {
-
     return new StackRemoteViewsFactory (getApplicationContext (),intent);
   }
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="com.simxdeveloper.catalogmovie">
 
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permissions.READ_DATABASE"/>
   <uses-permission android:name="android.permissioms.WRITE_DATABASE"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.SET_ALARM"/>
 
   <permission
     android:name="com.simxdeveloper.catalogmovie.READ_DATABASE"
@@ -55,8 +58,21 @@
         android:name="android.appwidget.provider"
         android:resource="@xml/movie_favorite_widget_info"/>
     </receiver>
-    <service android:name=".widget.MoviesStackWidgetService"
+
+    <service
+      android:name=".widget.MoviesStackWidgetService"
       android:permission="android.permission.BIND_REMOTEVIEWS"/>
+    <service
+      android:enabled="true"
+      android:name="com.evernote.android.job.gcm.PlatformGcmService"
+      tools:replace="android:enabled"/>
+
+    <receiver android:name=".broadcast.NotificationPublisher"/>
+
+    <activity
+      android:label="@string/title_activity_settings"
+      android:name=".ui.setting.SettingsActivity">
+    </activity>
   </application>
 
 </manifest>
