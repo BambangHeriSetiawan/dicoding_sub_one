@@ -3,12 +3,14 @@ package com.simxdeveloper.catalogmovie.ui.home.up_coming;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,16 +29,14 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class UpcomingFragment extends Fragment implements UpcomingFragmentPresenter {
-
-
+  private static final String FRAGMENT_STATE = "FRAGMENT_STATE_1";
   @BindView(R.id.rcv_movies)
   RecyclerView rcvMovies;
-  Unbinder unbinder;
   private UpcomingFragmentPresenterImpl presenter;
   private AdapterMovieUpcoming adapterMovieUpcoming;
   public UpcomingFragment () {
   }
-
+  private List<ResultsItem> resultsItemList = new ArrayList<> ();
   public static UpcomingFragment newInstance () {
     Bundle args = new Bundle ();
     UpcomingFragment fragment = new UpcomingFragment ();
@@ -45,10 +45,19 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
   }
 
   @Override
+  public void onCreate (@Nullable Bundle savedInstanceState) {
+    super.onCreate (savedInstanceState);
+    if (savedInstanceState != null){
+      resultsItemList = savedInstanceState.getParcelableArrayList (FRAGMENT_STATE);
+      Log.e ("UpcomingFragment", "onCreate: " + resultsItemList.size ());
+    }
+  }
+
+  @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate (R.layout.fragment_upcoming, container, false);
-    unbinder = ButterKnife.bind (this, view);
+    ButterKnife.bind (this, view);
     presenter = new UpcomingFragmentPresenterImpl (this);
     adapterMovieUpcoming = new AdapterMovieUpcoming (this,new ArrayList<> ());
     return view;
@@ -61,12 +70,14 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
     rcvMovies.setItemAnimator (new DefaultItemAnimator ());
     rcvMovies.setLayoutManager (new LinearLayoutManager (getContext (),LinearLayoutManager.VERTICAL,false));
     rcvMovies.setAdapter (adapterMovieUpcoming);
-    presenter.getUpcomingMovie();
+    if (resultsItemList.size () == 0)presenter.getUpcomingMovie ();
+
   }
 
   @Override
   public void initMovie (List<ResultsItem> results) {
     adapterMovieUpcoming.updateAdapter (results);
+    resultsItemList  = results;
   }
 
   @Override
@@ -89,8 +100,15 @@ public class UpcomingFragment extends Fragment implements UpcomingFragmentPresen
   }
 
   @Override
-  public void onDestroyView () {
-    super.onDestroyView ();
-    unbinder.unbind ();
+  public void onViewStateRestored (@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored (savedInstanceState);
+    adapterMovieUpcoming.updateAdapter (resultsItemList);
+  }
+
+  @Override
+  public void onSaveInstanceState (@NonNull Bundle outState) {
+    outState.putParcelableArrayList (FRAGMENT_STATE,
+        (ArrayList<? extends Parcelable>) resultsItemList);
+    super.onSaveInstanceState (outState);
   }
 }

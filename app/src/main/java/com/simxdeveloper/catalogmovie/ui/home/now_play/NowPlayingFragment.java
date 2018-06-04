@@ -3,11 +3,14 @@ package com.simxdeveloper.catalogmovie.ui.home.now_play;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +31,13 @@ import java.util.List;
 public class NowPlayingFragment extends Fragment implements NowPlayingPresenter {
 
   private static String KEY_PAGE = "page";
+  private static final String FRAGMENT_STATE = "FRAGMENT_STATE";
   @BindView(R.id.rcv_movies)
   RecyclerView rcvMovies;
-  Unbinder unbinder;
   private NowPlayingPresenterImpl presenter;
   private AdapterMovieNowPlaying adapterMovieNowPlaying;
   public NowPlayingFragment () { }
-
+  private List<ResultsItem> resultsItemList = new ArrayList<> ();
   public static NowPlayingFragment newInstance () {
     Bundle args = new Bundle ();
     NowPlayingFragment fragment = new NowPlayingFragment ();
@@ -42,14 +45,29 @@ public class NowPlayingFragment extends Fragment implements NowPlayingPresenter 
     return fragment;
   }
 
+
+  @Override
+  public void onCreate (@Nullable Bundle savedInstanceState) {
+    super.onCreate (savedInstanceState);
+    if (savedInstanceState != null){
+      resultsItemList = savedInstanceState.getParcelableArrayList (FRAGMENT_STATE);
+    }
+  }
+
   @Override
   public View onCreateView (LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     View view = inflater.inflate (R.layout.fragment_now_playing, container, false);
-    unbinder = ButterKnife.bind (this, view);
+    ButterKnife.bind (this, view);
     presenter = new NowPlayingPresenterImpl (this);
     adapterMovieNowPlaying = new AdapterMovieNowPlaying (this, new ArrayList<> ());
     return view;
+  }
+
+  @Override
+  public void onViewStateRestored (@Nullable Bundle savedInstanceState) {
+    super.onViewStateRestored (savedInstanceState);
+    adapterMovieNowPlaying.updateAdapter (resultsItemList);
   }
 
   @Override
@@ -59,12 +77,13 @@ public class NowPlayingFragment extends Fragment implements NowPlayingPresenter 
     rcvMovies.setItemAnimator (new DefaultItemAnimator ());
     rcvMovies.setLayoutManager (new LinearLayoutManager (getContext (),LinearLayoutManager.VERTICAL,false));
     rcvMovies.setAdapter (adapterMovieNowPlaying);
-    presenter.getUpcomingMovie();
+    if (resultsItemList.size () == 0)presenter.getNowPlaying ();
   }
 
   @Override
   public void iniMovie (List<ResultsItem> results) {
     adapterMovieNowPlaying.updateAdapter (results);
+    resultsItemList = results;
   }
 
   @Override
@@ -75,6 +94,7 @@ public class NowPlayingFragment extends Fragment implements NowPlayingPresenter 
   @Override
   public void onMovieClicked (ResultsItem resultsItem) {
     DetailActivity.start (getContext (),resultsItem,false);
+
   }
 
   @Override
@@ -88,8 +108,9 @@ public class NowPlayingFragment extends Fragment implements NowPlayingPresenter 
   }
 
   @Override
-  public void onDestroyView () {
-    super.onDestroyView ();
-    unbinder.unbind ();
+  public void onSaveInstanceState (@NonNull Bundle outState) {
+    outState.putParcelableArrayList (FRAGMENT_STATE,
+        (ArrayList<? extends Parcelable>) resultsItemList);
+    super.onSaveInstanceState (outState);
   }
 }

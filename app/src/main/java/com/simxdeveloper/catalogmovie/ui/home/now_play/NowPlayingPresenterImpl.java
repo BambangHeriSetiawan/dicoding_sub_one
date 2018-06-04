@@ -13,7 +13,7 @@ public class NowPlayingPresenterImpl {
     this.presenter = presenter;
   }
 
-  public void getUpcomingMovie () {
+  public void getNowPlaying () {
     ObservableHelper.nowPlayingObservable ().subscribe (
         responseNowPlaying -> presenter.iniMovie(responseNowPlaying.getResults ()),
         throwable -> presenter.showError(throwable.getMessage ())

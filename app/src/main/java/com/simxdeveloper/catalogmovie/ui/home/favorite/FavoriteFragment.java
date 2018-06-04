@@ -62,7 +62,6 @@ public class FavoriteFragment extends Fragment implements FavoritePresenter {
     presenter = new FavoritePresenterImpl (this, getContext ());
     adapterMovieFavorite = new AdapterMovieFavorite (this, new ArrayList<> ());
     adapterCursorFavorite = new AdapterCursorFavorite (this);
-    //presenter.getFavoritMovie();
     getLoaderManager ().initLoader (LOADER_MOVIES,null,mLoaderCallbacks);
     return view;
   }

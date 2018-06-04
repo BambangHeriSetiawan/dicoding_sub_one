@@ -63,10 +63,7 @@
     <service
       android:name=".widget.MoviesStackWidgetService"
       android:permission="android.permission.BIND_REMOTEVIEWS"/>
-    <service
-      android:enabled="true"
-      android:name="com.evernote.android.job.gcm.PlatformGcmService"
-      tools:replace="android:enabled"/>
+
 
     <receiver android:name=".broadcast.ReciverScheduleSeven"
       android:enabled="true"
