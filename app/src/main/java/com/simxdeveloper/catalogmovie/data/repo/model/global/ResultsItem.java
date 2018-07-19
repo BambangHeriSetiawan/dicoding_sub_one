@@ -1,10 +1,11 @@
 package com.simxdeveloper.catalogmovie.data.repo.model.global;
 
+import android.databinding.BaseObservable;
 import android.os.Parcel;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
-public class ResultsItem implements android.os.Parcelable {
+public class ResultsItem implements  android.os.Parcelable {
 
 	@SerializedName("overview")
 	private String overview;

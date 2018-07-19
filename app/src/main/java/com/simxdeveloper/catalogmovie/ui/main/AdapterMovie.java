@@ -1,55 +1,48 @@
 package com.simxdeveloper.catalogmovie.ui.main;
 
+import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.bumptech.glide.Glide;
-import com.simxdeveloper.catalogmovie.Apps;
 import com.simxdeveloper.catalogmovie.R;
 import com.simxdeveloper.catalogmovie.data.repo.model.global.ResultsItem;
-import com.simxdeveloper.catalogmovie.helper.Const;
-import com.simxdeveloper.catalogmovie.ui.main.AdapterMovie.Holder;
+import com.simxdeveloper.catalogmovie.databinding.ItemMovieBinding;
+import com.simxdeveloper.catalogmovie.ui.mvvm.ItemMovieViewModel;
+
 import java.util.List;
 
 /**
  * User: simx Date: 18/05/18 23:44
  */
-public class AdapterMovie extends Adapter<Holder> {
+public class AdapterMovie extends RecyclerView.Adapter<AdapterMovie.BindingHolder> {
 
-  private MainPresenter presenter;
+  private Context context;
   private List<ResultsItem> resultsItems;
-
-  public AdapterMovie (MainPresenter presenter,
-      List<ResultsItem> resultsItems) {
-    this.presenter = presenter;
+  private ItemMovieViewModel itemMovieViewModel;
+  public AdapterMovie(Context context, List<ResultsItem> resultsItems) {
+    this.context = context;
     this.resultsItems = resultsItems;
   }
 
   @NonNull
   @Override
-  public Holder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from (parent.getContext ())
-        .inflate (R.layout.item_movie, parent, false);
-    return new Holder (view);
+  public BindingHolder onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
+    ItemMovieBinding itemMovieBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.getContext()),
+            R.layout.item_movie,
+            parent,
+            false
+    );
+    return new BindingHolder(itemMovieBinding);
   }
 
   @Override
-  public void onBindViewHolder (@NonNull Holder holder, int position) {
-    ResultsItem resultsItem = getItem (position);
-    holder.tvTitle.setText (resultsItem.getTitle ());
-    holder.tvDesc.setText (resultsItem.getOverview ());
-    holder.tvDate.setText (resultsItem.getReleaseDate ());
-    Glide.with (Apps.getContext ()).load (Const.IMAGE_PATH + resultsItem.getPosterPath ()).into (holder.imgMovie);
-    holder.itemView.setOnClickListener (v -> {
-      presenter.onMovieClicked(resultsItem);
-    });
+  public void onBindViewHolder (@NonNull BindingHolder holder, int position) {
+    itemMovieViewModel = new ItemMovieViewModel(getItem(position));
+    holder.itemMovieBinding.setItem(itemMovieViewModel);
+    //holder.bind(getItem(position));
   }
 
   @Override
@@ -61,24 +54,25 @@ public class AdapterMovie extends Adapter<Holder> {
     return resultsItems.get (pos);
   }
 
-  public void updateAdapter (List<ResultsItem> resultsItems) {
+  public void setResultsItems(List<ResultsItem> resultsItems) {
     this.resultsItems = resultsItems;
-    notifyDataSetChanged ();
+    notifyDataSetChanged();
+  }
+  public void addResultItem(ResultsItem resultsItem){
+    this.resultsItems.add(resultsItem);
+    notifyDataSetChanged();
   }
 
-  public class Holder extends ViewHolder {
+  public class BindingHolder extends RecyclerView.ViewHolder {
+    private  ItemMovieBinding itemMovieBinding;
+    public BindingHolder(ItemMovieBinding itemMovieBinding) {
+      super(itemMovieBinding.getRoot());
+      this.itemMovieBinding  = itemMovieBinding;
+    }
 
-    @BindView(R.id.img_movie)
-    ImageView imgMovie;
-    @BindView(R.id.tv_title)
-    TextView tvTitle;
-    @BindView(R.id.tv_desc)
-    TextView tvDesc;
-    @BindView(R.id.tv_date)
-    TextView tvDate;
-    public Holder (View itemView) {
-      super (itemView);
-      ButterKnife.bind (this, itemView);
+    public void bind(ResultsItem item) {
+      itemMovieBinding.setItem(itemMovieViewModel);
+      itemMovieBinding.executePendingBindings();
     }
   }
 }
